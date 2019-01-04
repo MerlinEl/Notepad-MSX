@@ -1,6 +1,6 @@
 <NotepadPlus>
     <Session activeView="0">
-        <mainView activeIndex="5">
+        <mainView activeIndex="4">
             <File firstVisibleLine="195" xOffset="0" scrollWidth="3816" startPos="11991" endPos="11991" selMode="0" lang="Normal Text" encoding="-1" filename="D:\ReneBaca\3DsMax\Tasks.txt" backupFilePath="" originalFileLastModifTimestamp="-1643868281" originalFileLastModifTimestampHigh="30712681" mapFirstVisibleDisplayLine="-1" mapFirstVisibleDocLine="-1" mapLastVisibleDocLine="-1" mapNbLine="-1" mapHigherPos="-1" mapWidth="-1" mapHeight="-1" mapKByteInDoc="67111168" mapWrapIndentMode="-1" mapIsWrap="no" />
             <File firstVisibleLine="0" xOffset="0" scrollWidth="559" startPos="57" endPos="57" selMode="0" lang="MaxScript" encoding="-1" filename="C:\temp\bridge.ms" backupFilePath="D:\ReneBaca\Aprog\Notepad-MSX\backup\bridge.ms@2019-01-04_093036" originalFileLastModifTimestamp="-1442996650" originalFileLastModifTimestampHigh="30712838" mapFirstVisibleDisplayLine="-1" mapFirstVisibleDocLine="-1" mapLastVisibleDocLine="-1" mapNbLine="-1" mapHigherPos="-1" mapWidth="-1" mapHeight="-1" mapKByteInDoc="67111168" mapWrapIndentMode="-1" mapIsWrap="no" />
             <File firstVisibleLine="0" xOffset="0" scrollWidth="152" startPos="160" endPos="160" selMode="0" lang="Normal Text" encoding="1250" filename="D:\ReneBaca\3DsMax\Dochazka.txt" backupFilePath="" originalFileLastModifTimestamp="2090312406" originalFileLastModifTimestampHigh="30712833" mapFirstVisibleDisplayLine="-1" mapFirstVisibleDocLine="-1" mapLastVisibleDocLine="-1" mapNbLine="-1" mapHigherPos="-1" mapWidth="-1" mapHeight="-1" mapKByteInDoc="-285211648" mapWrapIndentMode="-1" mapIsWrap="no" />
@@ -8,8 +8,7 @@
                 <Mark line="3" />
                 <Mark line="2817" />
             </File>
-            <File firstVisibleLine="0" xOffset="0" scrollWidth="792" startPos="1556" endPos="1556" selMode="0" lang="Normal Text" encoding="-1" filename="D:\ReneBaca\Aprog\Notepad-MSX\help\Readme.md" backupFilePath="" originalFileLastModifTimestamp="-1546645391" originalFileLastModifTimestampHigh="30712841" mapFirstVisibleDisplayLine="-1" mapFirstVisibleDocLine="-1" mapLastVisibleDocLine="-1" mapNbLine="-1" mapHigherPos="-1" mapWidth="-1" mapHeight="-1" mapKByteInDoc="67111168" mapWrapIndentMode="-1" mapIsWrap="no" />
-            <File firstVisibleLine="0" xOffset="0" scrollWidth="312" startPos="24" endPos="24" selMode="0" lang="Normal Text" encoding="-1" filename="new 1" backupFilePath="D:\ReneBaca\Aprog\Notepad-MSX\backup\new 1@2019-01-04_123759" originalFileLastModifTimestamp="0" originalFileLastModifTimestampHigh="0" mapFirstVisibleDisplayLine="-1" mapFirstVisibleDocLine="-1" mapLastVisibleDocLine="-1" mapNbLine="-1" mapHigherPos="-1" mapWidth="-1" mapHeight="-1" mapKByteInDoc="67111168" mapWrapIndentMode="-1" mapIsWrap="no" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="792" startPos="1542" endPos="1542" selMode="0" lang="Normal Text" encoding="-1" filename="D:\ReneBaca\Aprog\Notepad-MSX\help\Readme.md" backupFilePath="D:\ReneBaca\Aprog\Notepad-MSX\backup\Readme.md@2019-01-04_133420" originalFileLastModifTimestamp="-1546645391" originalFileLastModifTimestampHigh="30712841" mapFirstVisibleDisplayLine="-1" mapFirstVisibleDocLine="-1" mapLastVisibleDocLine="-1" mapNbLine="-1" mapHigherPos="-1" mapWidth="-1" mapHeight="-1" mapKByteInDoc="67111168" mapWrapIndentMode="-1" mapIsWrap="no" />
         </mainView>
         <subView activeIndex="0" />
     </Session>
