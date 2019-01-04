@@ -12,7 +12,7 @@ press Save As… button
 put the name “test” in (without quotes)
 check menu Language, you should see the language now
 
-img1
+
 <img src="rgTO5bW.png" alt="Syntax Highlight"/>
 
 
@@ -38,7 +38,7 @@ Put the following content into the file
 save it as C:\Program Files\Notepad++\plugins\APIs\test.xml
 Step 3: Check Settings->Preferences->Atuo-Completion it should look like this
 
-img2
+
 <img src="gZBUFff.png" alt="Syntax Highlight"/>
 
 
@@ -49,7 +49,7 @@ type the word “testkeyword” (without quotes)
 you should see the word in a list, use tab key to complete
 press key “(” (without quotes) and you should see the hints
 
-img3
+
 <img src="kGmts1H.png" alt="Syntax Highlight"/>
 
 Cheers
