@@ -7,8 +7,8 @@ Initialize 3DsMax Bridge
 
 ![alt text](https://github.com/MerlinEl/Notepad-MSX/blob/master/tools/MXSPyCOM/feature-2.gif)
 
-![Screenshot](/master/tools/MXSPyCOM/feature-1.gif)
-![myimage-alt-tag](/master/tools/MXSPyCOM/feature-2.gif)
+![Screenshot](master/tools/MXSPyCOM/feature-1.gif)
+![myimage-alt-tag](master/tools/MXSPyCOM/feature-2.gif)
 
 What is Notepad++?
 ******************
