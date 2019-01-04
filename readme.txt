@@ -3,6 +3,9 @@ Initialize 3DsMax Bridge
 1) place [ Notepad++ ] enywhere in you Pc
 2) drop file [ InitMaxBridge.ms ] in to 3DsMax window and follow instructions
 
+![alt text](https://github.com/MerlinEl/Notepad-MSX/blob/master/tools/MXSPyCOM/feature-1.png)
+
+![alt text](https://github.com/MerlinEl/Notepad-MSX/blob/master/tools/MXSPyCOM/feature-2.png)
 
 
 What is Notepad++?
