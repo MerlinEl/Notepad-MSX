@@ -2813,12 +2813,6 @@
 		<KeyWord name="polyop.moveFacesToPlane" />
 		<KeyWord name="polyop.chamferVerts" />
 		<KeyWord name="polyop.getVert" />
-		<KeyWord name="polyop.getVert" func="yes">
-			<Overload retVal="pos" descr="Returns vertex position">
-			<Param name="obj mesh" />
-			<Param name="index int" />
-			</Overload>
-		</KeyWord>
 		<KeyWord name="polyop.getFaceVerts" />
 		<KeyWord name="polyop.getDeadFaces" />
 		<KeyWord name="polyop.getNumFaces" />

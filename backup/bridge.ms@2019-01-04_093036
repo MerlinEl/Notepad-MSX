@@ -1,0 +1,2 @@
+print "connect external test2"
+local p = polyop.getVert 
