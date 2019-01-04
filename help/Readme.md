@@ -36,6 +36,7 @@ Put the following content into the file
 ```
 
 save it as C:\Program Files\Notepad++\plugins\APIs\test.xml
+
 Step 3: Check Settings->Preferences->Atuo-Completion it should look like this
 
 
@@ -53,4 +54,4 @@ press key “(” (without quotes) and you should see the hints
 <img src="kGmts1H.png" alt="Syntax Highlight"/>
 
 Cheers
-Claudia
+Claudia ( Claudia Frank )
