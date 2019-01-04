@@ -1,2 +1,4 @@
 print "connect external test2"
-local p = polyop.getVert 
+local p = polyop.getVert
+
+lh_uni_wall_bricks_c_v1

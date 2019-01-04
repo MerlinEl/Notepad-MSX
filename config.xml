@@ -3,20 +3,23 @@
     <FindHistory nbMaxFindHistoryPath="10" nbMaxFindHistoryFilter="10" nbMaxFindHistoryFind="10" nbMaxFindHistoryReplace="10" matchWord="no" matchCase="no" wrap="yes" directionDown="yes" fifRecuisive="yes" fifInHiddenFolder="no" dlgAlwaysVisible="no" fifFilterFollowsDoc="no" fifFolderFollowsDoc="no" searchMode="0" transparencyMode="1" transparency="150" dotMatchesNewline="no" isSearch2ButtonsMode="no">
         <Filter name="" />
         <Filter name="" />
+        <Filter name="" />
+        <Find name="http://i.imgur.com" />
+        <Find name="polyop" />
         <Find name="Micra" />
-        <Replace name="" />
-        <Replace name="" />
+        <Replace name="help" />
     </FindHistory>
     <History nbMaxFile="10" inSubMenu="no" customLength="-1">
-        <File filename="e:\Aprog\Notepad++\plugins\APIs\MaxScript.xml" />
-        <File filename="e:\Aprog\Orien\Micra\Micra4\App\Custom Settings\MXS_EditorAbbrev.properties" />
-        <File filename="e:\Aprog\Orien\Micra\Micra4\App\Custom Settings\MXS_EditorUser.properties" />
-        <File filename="e:\Aprog\Orien\Micra\Scripting\Notepad++\maxscript.api" />
-        <File filename="e:\Aprog\Orien\Micra\Scripting\Notepad++\userDefineLang.xml" />
-        <File filename="e:\Aprog\Orien\Micra\Notepad++\autoCompletion\maxscript.xml" />
-        <File filename="e:\Aprog\Orien\Micra\Notepad++\shortcuts.xml" />
-        <File filename="D:\ReneBaca\3DsMax\Micra\Notepad++\tools\MXSPyCOM\initialize_COM_server.ms" />
         <File filename="D:\ReneBaca\3DsMax\Micra\Notepad++\InitMaxBridge.ms" />
+        <File filename="D:\ReneBaca\Aprog\Notepad-MSX\InitMaxBridge.ms" />
+        <File filename="D:\ReneBaca\Aprog\Notepad-MSX\.gitignore" />
+        <File filename="D:\ReneBaca\Aprog\Notepad-MSX\tools\MXSPyCOM\+\Installing MXSPyCOM.txt" />
+        <File filename="D:\ReneBaca\Aprog\Notepad-MSX\tools\MXSPyCOM\+\vscode-maxscript-master\README.md" />
+        <File filename="D:\ReneBaca\3DsMax\Micra\.gitignore" />
+        <File filename="D:\ReneBaca\Aprog\Notepad-MSX\tools\MXSPyCOM\initialize_COM_server.ms" />
+        <File filename="D:\ReneBaca\Aprog\Notepad-MSX\readme.md" />
+        <File filename="D:\ReneBaca\Aprog\Notepad-MSX\help\Readme.md" />
+        <File filename="D:\ReneBaca\Aprog\Notepad-MSX\autoCompletion\maxscript.xml" />
     </History>
     <GUIConfigs>
         <GUIConfig name="ToolBar" visible="yes">standard</GUIConfig>
