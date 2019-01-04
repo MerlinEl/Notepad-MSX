@@ -20,7 +20,6 @@ Step 2: define API file
 Open a new file - menu File->New
 Put the following content into the file
 
-[CODE]
 <?xml version="1.0" encoding="Windows-1252" ?>
 <NotepadPlus>
     <AutoComplete language="test">
@@ -33,7 +32,6 @@ Put the following content into the file
         </KeyWord>
     </AutoComplete>
 </NotepadPlus>
-[/CODE]
 
 save it as C:\Program Files\Notepad++\plugins\APIs\test.xml
 Step 3: Check Settings->Preferences->Atuo-Completion it should look like this
