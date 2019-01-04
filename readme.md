@@ -1,5 +1,5 @@
-Initialize 3DsMax Bridge
-************************
+Initialize MXSPyCOM - 3DsMax Bridge
+************************************
 1) place [ Notepad++ ] enywhere in you Pc
 2) drop file [ InitMaxBridge.ms ] in to 3DsMax window and follow instructions
 
