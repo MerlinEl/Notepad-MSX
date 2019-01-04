@@ -3,6 +3,7 @@ Initialize 3DsMax Bridge
 1) place [ Notepad++ ] enywhere in you Pc
 2) drop file [ InitMaxBridge.ms ] in to 3DsMax window and follow instructions
 
+![screenshot](../tools/MXSPyCOM/feature-2.gif)
 <img src="/tools/MXSPyCOM/feature-1.png" alt="Syntax Highlight"/>
 
 
