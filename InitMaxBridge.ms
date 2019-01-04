@@ -30,7 +30,7 @@ rollout mcNotepadBridgeDialog "Notepad++ Bridge MXSPyCOM" width:516 height:76
 		
 		local server_file = edt_path.text + "tools\MXSPyCOM\\initialize_COM_server.ms"
 		local max_file = (getDir #userStartupScripts)+ "\\initialize_COM_server.ms"
-		if  doesFileExist max_file do return false
+		if doesFileExist max_file do deleteFile max_file --if file exists remove it (update purpose)
 		copyFile server_file max_file
 	)
 	on btn_browse pressed  do (
@@ -46,6 +46,7 @@ rollout mcNotepadBridgeDialog "Notepad++ Bridge MXSPyCOM" width:516 height:76
 		
 		--Replace or Create Shortcuts MXSPyCOM.exe path
 		local notepad_dir = edt_path.text
+		if notepad_dir[notepad_dir.count] != "\\" do notepad_dir += "\\" --if path is pasted add slash at end
 		local shortcuts_xml = notepad_dir + "shortcuts.xml"
 		local user_items = getUserItems shortcuts_xml
 		if user_items == undefined do return false --user items not exeists or is empty
@@ -69,10 +70,10 @@ rollout mcNotepadBridgeDialog "Notepad++ Bridge MXSPyCOM" width:516 height:76
 			--in this notepad version dont need this check (the entry is always there)
 		)
 		
-		--XmlDoc.Save shortcuts_xml
+		XmlDoc.Save shortcuts_xml
 		registerBridge()
 		--format "Shortcut was updated. Restart Notepad++ to teake the effect.\n"
-		messageBox "Notepad++ Bridge was estabilished succecfully!\nPlease Restart 3DsMax and Notepad++.\nHave a Good Day!"
+		messageBox "Notepad++ Bridge was estabilished succecfully!\nPlease Restart Notepad++.\nHave a Good Day!" title:"Micra:"
 		DestroyDialog mcNotepadBridgeDialog
 	)
 	on mcNotepadBridgeDialog open do getNotepadPath()

@@ -15,7 +15,7 @@
     <Command name="Wikipedia Search" Ctrl="no" Alt="yes" Shift="no" Key="114">https://en.wikipedia.org/wiki/Special:Search?search=$(CURRENT_WORD)</Command>
     <Command name="Open file in another instance" Ctrl="no" Alt="yes" Shift="no" Key="117">$(NPP_FULL_FILE_PATH) $(CURRENT_WORD) -nosession -multiInst</Command>
     <Command name="Send via Outlook" Ctrl="yes" Alt="yes" Shift="yes" Key="79">outlook /a "$(FULL_CURRENT_PATH)"</Command>
-    <Command name="Execute MaxScript" Ctrl="yes" Alt="no" Shift="no" Key="69">"D:\ReneBaca\3DsMax\Micra\Notepad++\tools\MXSPyCOM\MXSPyCOM.exe" -s "$(FULL_CURRENT_PATH)"</Command>
+    <Command name="Execute MaxScript" Ctrl="yes" Alt="no" Shift="no" Key="69">"D:\ReneBaca\Aprog\Notepad-MSX\tools\MXSPyCOM\MXSPyCOM.exe" -s "$(FULL_CURRENT_PATH)"</Command>
   </UserDefinedCommands>
   <PluginCommands />
   <ScintillaKeys />
