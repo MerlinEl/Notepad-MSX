@@ -14,18 +14,6 @@ rollout mcNotepadBridgeDialog "Notepad++ Bridge MXSPyCOM" width:516 height:76
 		local notepad_dir = (getFilenamePath  (getThisScriptFilename()))
 		edt_path.text = notepad_dir
 	)
-	fn getUserItems shortcuts_xml = (
-		
-		if not (doesFileExist shortcuts_xml) do (
-			
-			format "Notepad++ Bridge MXSPyCOM > Unable to localize file [ % ] \n" shortcuts_xml
-			return undefined
-		)
-		XmlDoc.Load shortcuts_xml
-		local root_node = XmlDoc.item "NotepadPlus" --dotNetObject:System.Xml.XmlElement or undefined
-		local user_node = root_node.item "UserDefinedCommands"
-		user_node.ChildNodes
-	)
 	fn registerBridge = (
 		
 		local server_file = edt_path.text + "tools\MXSPyCOM\\initialize_COM_server.ms"
@@ -43,36 +31,8 @@ rollout mcNotepadBridgeDialog "Notepad++ Bridge MXSPyCOM" width:516 height:76
 	)
 	on btn_cancel pressed  do (DestroyDialog mcNotepadBridgeDialog)
 	on btn_accept pressed  do (
-		
-		--Replace or Create Shortcuts MXSPyCOM.exe path
-		local notepad_dir = edt_path.text
-		if notepad_dir[notepad_dir.count] != "\\" do notepad_dir += "\\" --if path is pasted add slash at end
-		local shortcuts_xml = notepad_dir + "shortcuts.xml"
-		local user_items = getUserItems shortcuts_xml
-		if user_items == undefined do return false --user items not exeists or is empty
-		local item_found = undefined
-		for i  = 1 to user_items.count-1 do (
-			
-			local item = user_items. ItemOf i -- dotNetObject:System.Xml.XmlElement
-			local attr = item.Attributes
-			local item_name = (attr.ItemOf "name").value --get attribute name
-			if item_name == "Execute MaxScript" do ( --replace item
-				
-				item_found	= item
-				--format "Found item:% path:%\n"   item_name item.InnerText
-				local run_cmd = "\"" + notepad_dir + "tools\MXSPyCOM\MXSPyCOM.exe\" -s \"$(FULL_CURRENT_PATH)\""
-				item.InnerText = run_cmd
-				exit --end loop
-			)
-		)
-		if  item_found  == undefined do ( --create new entry
-			
-			--in this notepad version dont need this check (the entry is always there)
-		)
-		
-		XmlDoc.Save shortcuts_xml
+	
 		registerBridge()
-		--format "Shortcut was updated. Restart Notepad++ to teake the effect.\n"
 		messageBox "Notepad++ Bridge was estabilished succecfully!\nPlease Restart Notepad++.\nHave a Good Day!" title:"Micra:"
 		DestroyDialog mcNotepadBridgeDialog
 	)

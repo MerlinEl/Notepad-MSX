@@ -1,0 +1,13 @@
+<Command name="MaxScript" Ctrl="yes" Alt="no" Shift="no" Key="69">&quot;%ADSK_3DSMAX_x64_2015%python\python.exe&quot; &quot;C:\YCDIVFX_MaxPlus\run.py&quot; -f &quot;$(FULL_CURRENT_PATH)&quot;</Command>
+
+
+
+NPP_SAVE "$(CURRENT_DIRECTORY)" "$(FILE_NAME)"
+
+
+cmd /c cd "$(CURRENT_DIRECTORY)" & path\to\python.exe -i "$(FILE_NAME)"
+
+
+
+NPP_SAVE
+"C:\Progra~2\Notepad++\miktex_to_latex.bat" "$(CURRENT_DIRECTORY)" "$(NAME_PART)" "$(NAME_PART).pdf"
