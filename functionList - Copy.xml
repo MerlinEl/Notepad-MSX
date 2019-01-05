@@ -310,7 +310,7 @@ http://notepad-plus-plus.org/features/function-list.html
                             \)                                                  # end-of-body indicator
                         "
                     openSymbole ="\("
-                    closeSymbole=" \)"
+                    closeSymbole="\)"
                 >
                     <className>
                         <nameExpr expr="(?i:struct)\s+\K[A-Za-z_]\w*" />

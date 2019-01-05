@@ -1,0 +1,1 @@
+format "mcTemplateDialog:%\n" mcTemplateDialog.btn_size

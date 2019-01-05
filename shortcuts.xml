@@ -1,5 +1,8 @@
 <NotepadPlus>
-    <InternalCommands />
+    <InternalCommands>
+        <Shortcut id="41008" Ctrl="yes" Alt="no" Shift="yes" Key="83" />
+        <Shortcut id="41007" Ctrl="yes" Alt="yes" Shift="no" Key="83" />
+    </InternalCommands>
     <Macros>
         <Macro name="Trim Trailing Space and Save" Ctrl="no" Alt="yes" Shift="yes" Key="83">
             <Action type="2" message="0" wParam="42024" lParam="0" sParam="" />
@@ -7,18 +10,19 @@
         </Macro>
     </Macros>
     <UserDefinedCommands>
-        <Command name="Launch in Firefox" Ctrl="yes" Alt="yes" Shift="yes" Key="88">firefox &quot;$(FULL_CURRENT_PATH)&quot;</Command>
+        <Command name="Launch in Firefox" Ctrl="yes" Alt="yes" Shift="yes" Key="70">firefox &quot;$(FULL_CURRENT_PATH)&quot;</Command>
         <Command name="Get PHP help" Ctrl="no" Alt="yes" Shift="no" Key="112">http://www.php.net/$(CURRENT_WORD)</Command>
         <Command name="Wikipedia Search" Ctrl="no" Alt="yes" Shift="no" Key="114">https://en.wikipedia.org/wiki/Special:Search?search=$(CURRENT_WORD)</Command>
-		<Command name="Google Search" Ctrl="no" Alt="yes" Shift="no" Key="113">http://www.google.com/search?q=$(CURRENT_WORD)</Command>
-		<Command name="Send via Outlook" Ctrl="yes" Alt="yes" Shift="yes" Key="79">outlook /a &quot;$(FULL_CURRENT_PATH)&quot;</Command>
+        <Command name="Google Search" Ctrl="no" Alt="yes" Shift="no" Key="113">http://www.google.com/search?q=$(CURRENT_WORD)</Command>
+        <Command name="Send via Outlook" Ctrl="yes" Alt="yes" Shift="yes" Key="79">outlook /a &quot;$(FULL_CURRENT_PATH)&quot;</Command>
         <Command name="Open file in another instance" Ctrl="no" Alt="yes" Shift="no" Key="117">$(NPP_FULL_FILE_PATH) $(CURRENT_WORD) -nosession -multiInst</Command>
         <Command name="Open Script Folder" Ctrl="yes" Alt="no" Shift="yes" Key="68">explorer $(CURRENT_DIRECTORY)</Command>
-		<Command name="Edit MaxScript Bridge" Ctrl="yes" Alt="no" Shift="yes" Key="69">&quot;$(NPP_DIRECTORY)\notepad++.exe&quot; &quot;$(NPP_DIRECTORY)\tools\MXSPyCOM\runMaxscript.txt&quot;</Command>
-		<Command name="Edit Test" Ctrl="no" Alt="no" Shift="no" Key="0">NppExec "NPP_SAVE $(CURRENT_DIRECTORY)\$(FILE_NAME)"</Command>
+        <Command name="Edit MaxScript Bridge" Ctrl="no" Alt="yes" Shift="yes" Key="69">&quot;$(NPP_DIRECTORY)\notepad++.exe&quot; &quot;$(NPP_DIRECTORY)\tools\MXSPyCOM\runMaxscript.as&quot;</Command>
+        <Command name="Edit Test" Ctrl="no" Alt="no" Shift="no" Key="0">NppExec &quot;NPP_SAVE $(CURRENT_DIRECTORY)\$(FILE_NAME)&quot;</Command>
     </UserDefinedCommands>
     <PluginCommands>
         <PluginCommand moduleName="NppExec.dll" internalID="22" Ctrl="yes" Alt="no" Shift="no" Key="69" />
+        <PluginCommand moduleName="NppExec.dll" internalID="23" Ctrl="yes" Alt="no" Shift="yes" Key="69" />
     </PluginCommands>
     <ScintillaKeys />
 </NotepadPlus>
