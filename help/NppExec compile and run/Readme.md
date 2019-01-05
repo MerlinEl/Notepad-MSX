@@ -4,6 +4,7 @@ This page demonstates how to use the freely available Notepad++ to compile APSIM
 #Installing Notepad++
 
 -Install Notepad++ from the [Notepad++ web site.](http://notepad-plus-plus.org/ "Notepad++ web site.")
+
 -Ensure the NppExec plugin is installed by going to the **Plugins | Plugin Mangaer | 	Show Plugin Manger** menu and selecting NppExec:
 
 
