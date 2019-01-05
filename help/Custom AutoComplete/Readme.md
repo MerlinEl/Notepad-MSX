@@ -1,8 +1,8 @@
-Custom AutoComplete file for XML language
+# Custom AutoComplete file for XML language
 
 
 
-Step 1: define the new language
+- Step 1: define the new language
 Menu Language->Define your language…
 open tab Keywords Lists
 press Styker in 1st group
@@ -16,7 +16,7 @@ check menu Language, you should see the language now
 <img src="rgTO5bW.png" alt="Syntax Highlight"/>
 
 
-Step 2: define API file
+- Step 2: define API file
 Open a new file - menu File->New
 Put the following content into the file
 
@@ -37,13 +37,13 @@ Put the following content into the file
 
 save it as C:\Program Files\Notepad++\plugins\APIs\test.xml
 
-Step 3: Check Settings->Preferences->Atuo-Completion it should look like this
+- Step 3: Check Settings->Preferences->Atuo-Completion it should look like this
 
 
 <img src="gZBUFff.png" alt="Syntax Highlight"/>
 
 
-Step 4: use it
+- Step 4: use it
 open a new file - menu File->New
 check language - menu Language->test
 type the word “testkeyword” (without quotes)
