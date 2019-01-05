@@ -13,15 +13,14 @@
         <Replace name="help" />
     </FindHistory>
     <History nbMaxFile="10" inSubMenu="no" customLength="-1">
-        <File filename="D:\ReneBaca\Aprog\Notepad-MSX\tools\MXSPyCOM\+\Installing MXSPyCOM.txt" />
-        <File filename="D:\ReneBaca\Aprog\Notepad-MSX\tools\MXSPyCOM\+\vscode-maxscript-master\README.md" />
-        <File filename="D:\ReneBaca\3DsMax\Micra\.gitignore" />
         <File filename="D:\ReneBaca\Aprog\Notepad-MSX\tools\MXSPyCOM\initialize_COM_server.ms" />
         <File filename="D:\ReneBaca\Aprog\Notepad-MSX\readme.md" />
         <File filename="D:\ReneBaca\Aprog\Notepad-MSX\help\Readme.md" />
         <File filename="D:\ReneBaca\Aprog\Notepad-MSX\autoCompletion\maxscript.xml" />
         <File filename="E:\Aprog\Orien\Micra\Micra4\Micra_Macro.mcr" />
         <File filename="e:\Aprog\Notepad-MSX\InitMaxBridge.ms" />
+        <File filename="e:\Aprog\Notepad-MSX\help\NppExec compile and run\Readme.md" />
+        <File filename="E:\Aprog\Notepad-MSX\plugins\NppExec\doc\NppExec\NppExec.txt" />
         <File filename="E:\Aprog\Notepad-MSX\tools\MXSPyCOM\runMaxscript.txt" />
     </History>
     <GUIConfigs>
