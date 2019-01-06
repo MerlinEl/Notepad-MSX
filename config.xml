@@ -7,6 +7,9 @@
         <Filter name="" />
         <Filter name="" />
         <Filter name="" />
+        <Filter name="" />
+        <Find name="mcFile." />
+        <Find name="saveIniDialog" />
         <Find name="form." />
         <Find name="form" />
         <Find name="mcs." />
@@ -15,8 +18,7 @@
         <Find name="dotNetFormStruct" />
         <Find name="--|" />
         <Find name="--||" />
-        <Find name="clr_inact" />
-        <Find name="clr_seltext" />
+        <Replace name="" />
         <Replace name="iform." />
         <Replace name="iform" />
         <Replace name="mcDotnet.dColor" />
@@ -27,16 +29,16 @@
         <Replace name="help" />
     </FindHistory>
     <History nbMaxFile="10" inSubMenu="no" customLength="-1">
-        <File filename="E:\Aprog\Notepad-MSX\tools\MXSPyCOM\runMaxscript.txt" />
-        <File filename="E:\Aprog\Notepad-MSX\tools\MXSPyCOM\runMaxscript.xml" />
-        <File filename="e:\Aprog\Notepad-MSX\shortcuts.xml" />
-        <File filename="E:\Aprog\Orien\Micra\Micra4\Customize_v0.19.ms" />
-        <File filename="e:\Aprog\Notepad-MSX\tools\MXSPyCOM\README.md" />
-        <File filename="E:\Aprog\Orien\Micra\Micra4\Skeleton.ini" />
-        <File filename="e:\Aprog\Notepad-MSX\tools\MXSPyCOM\runMaxscript.ms" />
+        <File filename="E:\Aprog\Orien\Micra\Micra4\Dialog_Template_v0.03.ms" />
+        <File filename="E:\Aprog\Orien\Micra\Micra4\User\Orien_Star\Profile_1.ini" />
+        <File filename="E:\Aprog\Orien\Micra\Micra4\User\Orien_Star\Profile_2.ini" />
+        <File filename="E:\Aprog\Orien\Micra\Micra4\Default\Profile_Temp.ini" />
         <File filename="E:\Aprog\Notepad-MSX\tools\MXSPyCOM\runMaxscriptSelection.as" />
         <File filename="E:\Aprog\Notepad-MSX\tools\MXSPyCOM\runMaxscript.as" />
-        <File filename="e:\Aprog\Notepad-MSX\tools\MXSPyCOM\create_API.ms" />
+        <File filename="E:\Aprog\Orien\Micra\Micra4\CORE\mcObjects.ms" />
+        <File filename="E:\Aprog\Orien\Micra\Micra4\CORE\mcFile.ms" />
+        <File filename="E:\Aprog\Notepad-MSX\functionList.xml" />
+        <File filename="E:\Aprog\Orien\Micra\Micra4\Customize_v0.2.ms" />
     </History>
     <GUIConfigs>
         <GUIConfig name="ToolBar" visible="yes">standard</GUIConfig>
@@ -78,7 +80,7 @@
         <GUIConfig name="MISC" fileSwitcherWithoutExtColumn="no" backSlashIsEscapeCharacterForSql="yes" newStyleSaveDlg="no" isFolderDroppedOpenFiles="no" docPeekOnTab="no" docPeekOnMap="no" />
         <GUIConfig name="searchEngine" searchEngineChoice="2" searchEngineCustom="" />
         <GUIConfig name="SmartHighLight" matchCase="no" wholeWordOnly="yes" useFindSettings="no" onAnotherView="no">yes</GUIConfig>
-        <GUIConfig name="ScintillaPrimaryView" lineNumberMargin="show" bookMarkMargin="show" indentGuideLine="show" folderMarkStyle="box" lineWrapMethod="aligned" currentLineHilitingShow="show" scrollBeyondLastLine="no" disableAdvancedScrolling="no" wrapSymbolShow="hide" Wrap="no" borderEdge="yes" edge="no" edgeNbColumn="80" zoom="0" zoom2="0" whiteSpaceShow="hide" eolShow="hide" borderWidth="2" smoothFont="no" />
+        <GUIConfig name="ScintillaPrimaryView" lineNumberMargin="show" bookMarkMargin="show" indentGuideLine="show" folderMarkStyle="box" lineWrapMethod="aligned" currentLineHilitingShow="show" scrollBeyondLastLine="no" disableAdvancedScrolling="no" wrapSymbolShow="hide" Wrap="no" borderEdge="yes" edge="no" edgeNbColumn="80" zoom="1" zoom2="0" whiteSpaceShow="hide" eolShow="hide" borderWidth="2" smoothFont="no" />
         <GUIConfig name="DockingManager" leftWidth="240" rightWidth="200" topHeight="200" bottomHeight="241">
             <PluginDlg pluginName="Explorer.dll" id="0" curr="0" prev="-1" isVisible="yes" />
             <PluginDlg pluginName="Notepad++::InternalFunction" id="44084" curr="1" prev="-1" isVisible="yes" />
