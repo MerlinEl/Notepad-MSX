@@ -9,6 +9,8 @@
         <Filter name="" />
         <Filter name="" />
         <Filter name="" />
+        <Filter name="" />
+        <Find name="polyop" />
         <Find name="bind_to_windows" />
         <Find name="debug" />
         <Find name="mcFile." />
@@ -18,7 +20,6 @@
         <Find name="mcs." />
         <Find name="netDrColor" />
         <Find name="netDrRect" />
-        <Find name="dotNetFormStruct" />
         <Replace name="" />
         <Replace name="iform." />
         <Replace name="iform" />
@@ -30,16 +31,15 @@
         <Replace name="help" />
     </FindHistory>
     <History nbMaxFile="10" inSubMenu="no" customLength="-1">
-        <File filename="E:\Aprog\Orien\Micra\Micra4\Customize_v0.2.ms" />
-        <File filename="D:\ReneBaca\Aprog\Notepad-MSX\tools\MXSPyCOM\runMaxscript.ms" />
-        <File filename="D:\ReneBaca\Aprog\Notepad-MSX\tools\MXSPyCOM\maxscript_test.ms" />
-        <File filename="D:\ReneBaca\Aprog\Notepad-MSX\plugins\Config\NppExec.ini" />
-        <File filename="D:\ReneBaca\Aprog\Notepad-MSX\plugins\Config\MaxScript.ini" />
-        <File filename="D:\ReneBaca\Aprog\Notepad-MSX\userDefineLang.xml" />
-        <File filename="D:\ReneBaca\Aprog\Notepad-MSX\tools\MXSPyCOM\maxscriptEditSettings.as" />
         <File filename="D:\ReneBaca\Aprog\Notepad-MSX\shortcuts.xml" />
+        <File filename="D:\ReneBaca\Aprog\Notepad-MSX\.gitignore" />
+        <File filename="D:\ReneBaca\Aprog\Notepad-MSX\autoCompletion\maxscript.xml" />
+        <File filename="D:\ReneBaca\Aprog\Notepad-MSX\plugins\APIs\MaxScript.xml" />
         <File filename="D:\ReneBaca\Aprog\Notepad-MSX\tools\MXSPyCOM\maxscriptRunSelection.as" />
         <File filename="D:\ReneBaca\Aprog\Notepad-MSX\tools\MXSPyCOM\maxscriptRun.as" />
+        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\Delete_Duplicate_Lines_v0.01.ms" />
+        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\Import_Multi_Obj_v0.01.ms" />
+        <File filename="C:\Users\Rene.baca\Downloads\SceneGeneratorUI.ms" />
     </History>
     <GUIConfigs>
         <GUIConfig name="ToolBar" visible="yes">standard</GUIConfig>
