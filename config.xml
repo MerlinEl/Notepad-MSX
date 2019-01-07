@@ -8,6 +8,9 @@
         <Filter name="" />
         <Filter name="" />
         <Filter name="" />
+        <Filter name="" />
+        <Find name="bind_to_windows" />
+        <Find name="debug" />
         <Find name="mcFile." />
         <Find name="saveIniDialog" />
         <Find name="form." />
@@ -16,8 +19,6 @@
         <Find name="netDrColor" />
         <Find name="netDrRect" />
         <Find name="dotNetFormStruct" />
-        <Find name="--|" />
-        <Find name="--||" />
         <Replace name="" />
         <Replace name="iform." />
         <Replace name="iform" />
@@ -29,16 +30,16 @@
         <Replace name="help" />
     </FindHistory>
     <History nbMaxFile="10" inSubMenu="no" customLength="-1">
-        <File filename="E:\Aprog\Orien\Micra\Micra4\Dialog_Template_v0.03.ms" />
-        <File filename="E:\Aprog\Orien\Micra\Micra4\User\Orien_Star\Profile_1.ini" />
-        <File filename="E:\Aprog\Orien\Micra\Micra4\User\Orien_Star\Profile_2.ini" />
-        <File filename="E:\Aprog\Orien\Micra\Micra4\Default\Profile_Temp.ini" />
-        <File filename="E:\Aprog\Notepad-MSX\tools\MXSPyCOM\runMaxscriptSelection.as" />
-        <File filename="E:\Aprog\Notepad-MSX\tools\MXSPyCOM\runMaxscript.as" />
-        <File filename="E:\Aprog\Orien\Micra\Micra4\CORE\mcObjects.ms" />
-        <File filename="E:\Aprog\Orien\Micra\Micra4\CORE\mcFile.ms" />
-        <File filename="E:\Aprog\Notepad-MSX\functionList.xml" />
         <File filename="E:\Aprog\Orien\Micra\Micra4\Customize_v0.2.ms" />
+        <File filename="D:\ReneBaca\Aprog\Notepad-MSX\tools\MXSPyCOM\runMaxscript.ms" />
+        <File filename="D:\ReneBaca\Aprog\Notepad-MSX\tools\MXSPyCOM\maxscript_test.ms" />
+        <File filename="D:\ReneBaca\Aprog\Notepad-MSX\plugins\Config\NppExec.ini" />
+        <File filename="D:\ReneBaca\Aprog\Notepad-MSX\plugins\Config\MaxScript.ini" />
+        <File filename="D:\ReneBaca\Aprog\Notepad-MSX\userDefineLang.xml" />
+        <File filename="D:\ReneBaca\Aprog\Notepad-MSX\tools\MXSPyCOM\maxscriptEditSettings.as" />
+        <File filename="D:\ReneBaca\Aprog\Notepad-MSX\shortcuts.xml" />
+        <File filename="D:\ReneBaca\Aprog\Notepad-MSX\tools\MXSPyCOM\maxscriptRunSelection.as" />
+        <File filename="D:\ReneBaca\Aprog\Notepad-MSX\tools\MXSPyCOM\maxscriptRun.as" />
     </History>
     <GUIConfigs>
         <GUIConfig name="ToolBar" visible="yes">standard</GUIConfig>
@@ -73,7 +74,7 @@
         <GUIConfig name="ScintillaGlobalSettings" enableMultiSelection="no" />
         <GUIConfig name="openSaveDir" value="0" defaultDirPath="" />
         <GUIConfig name="titleBar" short="no" />
-        <GUIConfig name="stylerTheme" path="E:\Aprog\Notepad-MSX\stylers.xml" />
+        <GUIConfig name="stylerTheme" path="D:\ReneBaca\Aprog\Notepad-MSX\stylers.xml" />
         <GUIConfig name="wordCharList" useDefault="yes" charsAdded="" />
         <GUIConfig name="delimiterSelection" leftmostDelimiter="40" rightmostDelimiter="41" delimiterSelectionOnEntireDocument="no" />
         <GUIConfig name="multiInst" setting="0" />
