@@ -1,1 +1,1 @@
-print "test"
+edges = polyop.getEdgeSelection poly_obj as array
