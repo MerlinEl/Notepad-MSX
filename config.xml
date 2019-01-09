@@ -11,37 +11,39 @@
         <Filter name="" />
         <Filter name="" />
         <Filter name="" />
-        <Find name="lbl_category" />
-        <Find name="btn_act_add" />
-        <Find name="saveAction" />
-        <Find name="onTab1ButtonClick" />
-        <Find name="opacity=0.8" />
-        <Find name="polyop" />
-        <Find name="bind_to_windows" />
-        <Find name="debug" />
-        <Find name="mcFile." />
-        <Find name="saveIniDialog" />
-        <Replace name="opacity=0.9" />
-        <Replace name="iform." />
-        <Replace name="iform" />
-        <Replace name="mcDotnet.dColor" />
-        <Replace name="mcDotnet.dRect" />
-        <Replace name="DOTNET_FORM_STRUCT" />
-        <Replace name="--" />
-        <Replace name="mcDotnet.uiColor #" />
-        <Replace name="help" />
+        <Filter name="" />
+        <Find name="ShellLaunch" />
+        <Find name="data_str" />
+        <Find name="getActionData" />
+        <Find name='&quot;' />
+        <Find name='\&quot;' />
+        <Find name="=" />
+        <Find name='&quot;)' />
+        <Find name="= " />
+        <Find name="#(" />
+        <Find name="Reverse_Animation" />
+        <Replace name="ini_data" />
+        <Replace name="= " />
+        <Replace name="=" />
+        <Replace name="find_str" />
+        <Replace name="new_str" />
+        <Replace name="index" />
+        <Replace name="clearCurrentActionData" />
+        <Replace name="mcCustomizeDialog" />
+        <Replace name='&quot;category_list&quot;' />
+        <Replace name='&quot;category&quot;' />
     </FindHistory>
     <History nbMaxFile="10" inSubMenu="no" customLength="-1">
-        <File filename="D:\ReneBaca\Aprog\Notepad-MSX\tools\MXSPyCOM\maxscriptRunSelection.as" />
-        <File filename="D:\ReneBaca\Aprog\Notepad-MSX\tools\MXSPyCOM\maxscriptRun.as" />
-        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\Delete_Duplicate_Lines_v0.01.ms" />
-        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\Import_Multi_Obj_v0.01.ms" />
-        <File filename="C:\Users\Rene.baca\Downloads\SceneGeneratorUI.ms" />
-        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\User\rene.baca\Profile_1.ini" />
-        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\User\rene.baca\Settings.ini" />
-        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\Micra_Macro.mcr" />
-        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\CORE\mcArray.ms" />
-        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\Customize_v0.21.ms" />
+        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\User\old\Profile_1.ini" />
+        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\CORE\mcPopUp.ms" />
+        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\Dialog_Default_Net_v0.28.ms" />
+        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\CORE\mcDotnet.ms" />
+        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\CORE\mcCall.ms" />
+        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\CORE\mcFile.ms" />
+        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\Dialog_Default_Net_v0.29.ms" />
+        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\Settings.ini" />
+        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\Actions_Help.ini" />
+        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\Actions - Copy.ini" />
     </History>
     <GUIConfigs>
         <GUIConfig name="ToolBar" visible="yes">standard</GUIConfig>
@@ -84,10 +86,11 @@
         <GUIConfig name="searchEngine" searchEngineChoice="2" searchEngineCustom="" />
         <GUIConfig name="SmartHighLight" matchCase="no" wholeWordOnly="yes" useFindSettings="no" onAnotherView="no">yes</GUIConfig>
         <GUIConfig name="ScintillaPrimaryView" lineNumberMargin="show" bookMarkMargin="show" indentGuideLine="show" folderMarkStyle="box" lineWrapMethod="aligned" currentLineHilitingShow="show" scrollBeyondLastLine="no" disableAdvancedScrolling="no" wrapSymbolShow="hide" Wrap="no" borderEdge="yes" edge="no" edgeNbColumn="80" zoom="1" zoom2="0" whiteSpaceShow="hide" eolShow="hide" borderWidth="2" smoothFont="no" />
-        <GUIConfig name="DockingManager" leftWidth="240" rightWidth="200" topHeight="200" bottomHeight="182">
+        <GUIConfig name="DockingManager" leftWidth="239" rightWidth="200" topHeight="200" bottomHeight="182">
             <PluginDlg pluginName="Explorer.dll" id="0" curr="0" prev="-1" isVisible="yes" />
             <PluginDlg pluginName="Notepad++::InternalFunction" id="44084" curr="1" prev="-1" isVisible="yes" />
             <PluginDlg pluginName="NppExec.dll" id="2" curr="3" prev="-1" isVisible="yes" />
+            <PluginDlg pluginName="dummy" id="0" curr="3" prev="-1" isVisible="no" />
             <PluginDlg pluginName="ComparePlugin.dll" id="11" curr="1" prev="-1" isVisible="no" />
             <PluginDlg pluginName="LightExplorer.dll" id="0" curr="0" prev="-1" isVisible="no" />
             <ActiveTabs cont="0" activeTab="0" />
