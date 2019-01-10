@@ -14,16 +14,17 @@
         <Filter name="" />
         <Filter name="" />
         <Filter name="" />
-        <Find name="backupMicraFile" />
-        <Find name="mcFile." />
-        <Find name="setVersionToActive" />
-        <Find name="btn_set_active_version" />
-        <Find name="3DGallery" />
-        <Find name="fileInVersion" />
-        <Find name="getIniDataFromAction" />
-        <Find name="getIniDataFromArray" />
-        <Find name="when" />
-        <Find name="saveLoadIniSetings" />
+        <Filter name="" />
+        <Find name="mcSystem" />
+        <Find name="mcSkin" />
+        <Find name="mcInterface" />
+        <Find name="mcAction" />
+        <Find name="mcCreate" />
+        <Find name="mcSelVertsInXDialog" />
+        <Find name="mcTransform" />
+        <Find name="mcDialogSnap" />
+        <Find name="mcPopUpDialog" />
+        <Find name="mc_Dialog_A" />
         <Replace name="mcFile.saveLoadIniSetings" />
         <Replace name="doAction" />
         <Replace name="mcFile." />
@@ -36,16 +37,16 @@
         <Replace name="index" />
     </FindHistory>
     <History nbMaxFile="10" inSubMenu="no" customLength="-1">
-        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\CORE\mcSystem.ms" />
-        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\DotNet_Components_v0.01.ms" />
-        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\Skeleton.ini" />
-        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\CORE\mcTime.ms" />
         <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\CORE\mcColor.ms" />
         <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\CORE\mcObjects.ms" />
         <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\CORE\mcUIColors.ms" />
         <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\CORE\mcPopUp.ms" />
         <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\CORE\mcString.ms" />
         <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\CORE\mcDotnet.ms" />
+        <File filename="E:\Aprog\Orien\Micra\Micra4\CORE\_template.txt" />
+        <File filename="E:\Aprog\Orien\Micra\Micra4\CORE\mcArray.ms" />
+        <File filename="E:\Aprog\Orien\Micra\Micra4\Micra_Main.ms" />
+        <File filename="E:\Aprog\Orien\Micra\Micra4\Struct_Action_v0.03.ms" />
     </History>
     <GUIConfigs>
         <GUIConfig name="ToolBar" visible="yes">standard</GUIConfig>
@@ -80,15 +81,15 @@
         <GUIConfig name="ScintillaGlobalSettings" enableMultiSelection="no" />
         <GUIConfig name="openSaveDir" value="0" defaultDirPath="" />
         <GUIConfig name="titleBar" short="no" />
-        <GUIConfig name="stylerTheme" path="D:\ReneBaca\Aprog\Notepad-MSX\stylers.xml" />
+        <GUIConfig name="stylerTheme" path="E:\Aprog\Notepad-MSX\stylers.xml" />
         <GUIConfig name="wordCharList" useDefault="yes" charsAdded="" />
         <GUIConfig name="delimiterSelection" leftmostDelimiter="40" rightmostDelimiter="41" delimiterSelectionOnEntireDocument="no" />
         <GUIConfig name="multiInst" setting="0" />
         <GUIConfig name="MISC" fileSwitcherWithoutExtColumn="no" backSlashIsEscapeCharacterForSql="yes" newStyleSaveDlg="no" isFolderDroppedOpenFiles="no" docPeekOnTab="no" docPeekOnMap="no" />
         <GUIConfig name="searchEngine" searchEngineChoice="2" searchEngineCustom="" />
         <GUIConfig name="SmartHighLight" matchCase="no" wholeWordOnly="yes" useFindSettings="no" onAnotherView="no">yes</GUIConfig>
-        <GUIConfig name="ScintillaPrimaryView" lineNumberMargin="show" bookMarkMargin="show" indentGuideLine="show" folderMarkStyle="box" lineWrapMethod="aligned" currentLineHilitingShow="show" scrollBeyondLastLine="no" disableAdvancedScrolling="no" wrapSymbolShow="hide" Wrap="no" borderEdge="yes" edge="no" edgeNbColumn="80" zoom="1" zoom2="0" whiteSpaceShow="hide" eolShow="hide" borderWidth="2" smoothFont="no" />
-        <GUIConfig name="DockingManager" leftWidth="239" rightWidth="200" topHeight="200" bottomHeight="182">
+        <GUIConfig name="ScintillaPrimaryView" lineNumberMargin="show" bookMarkMargin="show" indentGuideLine="show" folderMarkStyle="box" lineWrapMethod="aligned" currentLineHilitingShow="show" scrollBeyondLastLine="no" disableAdvancedScrolling="no" wrapSymbolShow="hide" Wrap="no" borderEdge="yes" edge="no" edgeNbColumn="80" zoom="-1" zoom2="0" whiteSpaceShow="hide" eolShow="hide" borderWidth="2" smoothFont="no" />
+        <GUIConfig name="DockingManager" leftWidth="349" rightWidth="200" topHeight="200" bottomHeight="182">
             <PluginDlg pluginName="Explorer.dll" id="0" curr="0" prev="-1" isVisible="yes" />
             <PluginDlg pluginName="Notepad++::InternalFunction" id="44084" curr="1" prev="-1" isVisible="yes" />
             <PluginDlg pluginName="NppExec.dll" id="2" curr="3" prev="-1" isVisible="yes" />
