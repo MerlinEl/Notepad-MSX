@@ -12,38 +12,40 @@
         <Filter name="" />
         <Filter name="" />
         <Filter name="" />
-        <Find name="ShellLaunch" />
-        <Find name="data_str" />
-        <Find name="getActionData" />
-        <Find name='&quot;' />
-        <Find name='\&quot;' />
-        <Find name="=" />
-        <Find name='&quot;)' />
-        <Find name="= " />
-        <Find name="#(" />
-        <Find name="Reverse_Animation" />
+        <Filter name="" />
+        <Filter name="" />
+        <Find name="backupMicraFile" />
+        <Find name="mcFile." />
+        <Find name="setVersionToActive" />
+        <Find name="btn_set_active_version" />
+        <Find name="3DGallery" />
+        <Find name="fileInVersion" />
+        <Find name="getIniDataFromAction" />
+        <Find name="getIniDataFromArray" />
+        <Find name="when" />
+        <Find name="saveLoadIniSetings" />
+        <Replace name="mcFile.saveLoadIniSetings" />
+        <Replace name="doAction" />
+        <Replace name="mcFile." />
+        <Replace name="mcAction" />
         <Replace name="ini_data" />
         <Replace name="= " />
         <Replace name="=" />
         <Replace name="find_str" />
         <Replace name="new_str" />
         <Replace name="index" />
-        <Replace name="clearCurrentActionData" />
-        <Replace name="mcCustomizeDialog" />
-        <Replace name='&quot;category_list&quot;' />
-        <Replace name='&quot;category&quot;' />
     </FindHistory>
     <History nbMaxFile="10" inSubMenu="no" customLength="-1">
-        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\User\old\Profile_1.ini" />
+        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\CORE\mcSystem.ms" />
+        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\DotNet_Components_v0.01.ms" />
+        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\Skeleton.ini" />
+        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\CORE\mcTime.ms" />
+        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\CORE\mcColor.ms" />
+        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\CORE\mcObjects.ms" />
+        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\CORE\mcUIColors.ms" />
         <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\CORE\mcPopUp.ms" />
-        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\Dialog_Default_Net_v0.28.ms" />
+        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\CORE\mcString.ms" />
         <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\CORE\mcDotnet.ms" />
-        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\CORE\mcCall.ms" />
-        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\CORE\mcFile.ms" />
-        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\Dialog_Default_Net_v0.29.ms" />
-        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\Settings.ini" />
-        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\Actions_Help.ini" />
-        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\Actions - Copy.ini" />
     </History>
     <GUIConfigs>
         <GUIConfig name="ToolBar" visible="yes">standard</GUIConfig>
