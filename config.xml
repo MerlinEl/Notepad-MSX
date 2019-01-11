@@ -15,38 +15,41 @@
         <Filter name="" />
         <Filter name="" />
         <Filter name="" />
-        <Find name="mcSystem" />
-        <Find name="mcSkin" />
-        <Find name="mcInterface" />
-        <Find name="mcAction" />
-        <Find name="mcCreate" />
+        <Filter name="" />
+        <Filter name="" />
+        <Filter name="" />
+        <Find name="url = getSourceFileName()," />
+        <Find name="mcSilhouetteWirecolors" />
+        <Find name="mcSilhouetteSelection" />
+        <Find name="mcButtonTeleportGet" />
+        <Find name="mcButtonTeleportSend" />
         <Find name="mcSelVertsInXDialog" />
+        <Find name="mcInterface" />
         <Find name="mcTransform" />
-        <Find name="mcDialogSnap" />
-        <Find name="mcPopUpDialog" />
-        <Find name="mc_Dialog_A" />
+        <Find name="mcMax" />
+        <Find name="mcCreate" />
+        <Replace name=", " />
+        <Replace name="iconChanged" />
+        <Replace name="onEditToolbarButtonClick" />
+        <Replace name="btn_icn_change" />
+        <Replace name="changeIcon" />
+        <Replace name="onChangedIconIndex" />
+        <Replace name="a551f1" />
         <Replace name="mcFile.saveLoadIniSetings" />
         <Replace name="doAction" />
         <Replace name="mcFile." />
-        <Replace name="mcAction" />
-        <Replace name="ini_data" />
-        <Replace name="= " />
-        <Replace name="=" />
-        <Replace name="find_str" />
-        <Replace name="new_str" />
-        <Replace name="index" />
     </FindHistory>
     <History nbMaxFile="10" inSubMenu="no" customLength="-1">
-        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\CORE\mcColor.ms" />
-        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\CORE\mcObjects.ms" />
-        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\CORE\mcUIColors.ms" />
-        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\CORE\mcPopUp.ms" />
+        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\CORE\mcScreen.ms" />
+        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\CORE\mcSnap.ms" />
         <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\CORE\mcString.ms" />
-        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\CORE\mcDotnet.ms" />
-        <File filename="E:\Aprog\Orien\Micra\Micra4\CORE\_template.txt" />
-        <File filename="E:\Aprog\Orien\Micra\Micra4\CORE\mcArray.ms" />
-        <File filename="E:\Aprog\Orien\Micra\Micra4\Micra_Main.ms" />
-        <File filename="E:\Aprog\Orien\Micra\Micra4\Struct_Action_v0.03.ms" />
+        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\CORE\mcSystem.ms" />
+        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\CORE\mcTime.ms" />
+        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\CORE\mcTransform.ms" />
+        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\CORE\mcUIColors.ms" />
+        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\CORE\_template.txt" />
+        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\Actions.ini" />
+        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\Settings.ini" />
     </History>
     <GUIConfigs>
         <GUIConfig name="ToolBar" visible="yes">standard</GUIConfig>
@@ -81,7 +84,7 @@
         <GUIConfig name="ScintillaGlobalSettings" enableMultiSelection="no" />
         <GUIConfig name="openSaveDir" value="0" defaultDirPath="" />
         <GUIConfig name="titleBar" short="no" />
-        <GUIConfig name="stylerTheme" path="E:\Aprog\Notepad-MSX\stylers.xml" />
+        <GUIConfig name="stylerTheme" path="D:\ReneBaca\Aprog\Notepad-MSX\stylers.xml" />
         <GUIConfig name="wordCharList" useDefault="yes" charsAdded="" />
         <GUIConfig name="delimiterSelection" leftmostDelimiter="40" rightmostDelimiter="41" delimiterSelectionOnEntireDocument="no" />
         <GUIConfig name="multiInst" setting="0" />
