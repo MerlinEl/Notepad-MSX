@@ -43,7 +43,6 @@
         <Replace name=", " />
     </FindHistory>
     <History nbMaxFile="10" inSubMenu="no" customLength="-1">
-        <File filename="e:\Aprog\Orien\Micra\Micra4\Dialog_Default_Net_v0.29.ms" />
         <File filename="e:\Work\_Programming\Max Scripts\maxscript-master\Development Tools\Script Launcher\scriptLaunch06.ms" />
         <File filename="E:\Work\_Programming\Max Scripts\maxscript-master\Functions\archive\List.struct.ms" />
         <File filename="e:\Work\_Programming\Max Scripts\maxscript-master\UI Design\uiManager\wrapEditText.ms" />
@@ -53,6 +52,7 @@
         <File filename="E:\Aprog\Orien\Micra\Micra4\CORE\mcWindowsMessages.ms" />
         <File filename="e:\Aprog\Orien\Micra\Micra4\App\Maxscript_Settings\MXS_EditorUser.properties" />
         <File filename="E:\Aprog\Orien\Micra\Micra4\Settings.ini" />
+        <File filename="e:\Aprog\Orien\V&#x0161;ezn&#x00E1;lek\settings.xml" />
     </History>
     <GUIConfigs>
         <GUIConfig name="ToolBar" visible="yes">standard</GUIConfig>
