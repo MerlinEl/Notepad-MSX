@@ -1,0 +1,38 @@
+MXS_Editor
+MAXScript
+showSource fn
+newScript() 
+editorShowPath
+getListenerSelText()
+ 
+
+str = "New eindow with text"
+newWin = newScript()
+format "%\n" str to:newWin 
+
+
+
+newScript() 
+editorShowPath
+options.showGCStatus
+?
+ getListenerSelText()
+edittext 
+
+str = "New eindow with text"
+newWin = newScript()
+format "%\n" str to:newWin 
+MXS_Editor
+showinterface MAXScript
+MAXScript.title
+windows.getWindowPos tb
+windows.getHWNDData tb
+windows.getParentHWND tb
+windows.postMessage tb
+processPostedMessages
+
+mcWindowsMessages.WM_USER
+windows.sendmessage tb mcWindowsMessages.EM_GETSEL 0 0
+windows.postMessage tb mcWindowsMessages.EM_GETSEL 1 10
+UIAccessor.OpenDialog
+UIAccessor.SetWindowText tb "ssdsfsff"
