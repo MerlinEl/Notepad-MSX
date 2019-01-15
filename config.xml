@@ -21,16 +21,17 @@
         <Filter name="" />
         <Filter name="" />
         <Filter name="" />
-        <Find name="EM_GETLINE" />
-        <Find name="clear" />
-        <Find name="close" />
-        <Find name="WM_COPY" />
-        <Find name="WM_PASTE" />
-        <Find name="MXS_Scintilla" />
-        <Find name="0x00B1" />
-        <Find name="EM_SETSEL" />
-        <Find name="PluginsDir" />
-        <Find name="Win32Assembly" />
+        <Filter name="" />
+        <Find name="ffrm" />
+        <Find name="cam_rend" />
+        <Find name="coll_generator" />
+        <Find name="bourbon" />
+        <Find name="ConstructRoadPrototype" />
+        <Find name="CreateRoadFromSpline" />
+        <Find name="SetCrossRoadWireColor finalRoad" />
+        <Find name="btn_generate" />
+        <Find name="generate road" />
+        <Find name="uv" />
         <Replace name="AutorunDir" />
         <Replace name="mcWin32Assembly" />
         <Replace name="replaceAll" />
@@ -43,8 +44,6 @@
         <Replace name=", " />
     </FindHistory>
     <History nbMaxFile="10" inSubMenu="no" customLength="-1">
-        <File filename="e:\Aprog\Notepad-MSX\tools\MXSPyCOM\runMaxscript.ms" />
-        <File filename="e:\Aprog\Orien\Micra\repo_sync\_NEW\Dotnet Research\Show.NetProperty.ms" />
         <File filename="E:\Aprog\Orien\Micra\Micra4\CORE\mcWindowsMessages.ms" />
         <File filename="e:\Aprog\Orien\Micra\Micra4\App\Maxscript_Settings\MXS_EditorUser.properties" />
         <File filename="E:\Aprog\Orien\Micra\Micra4\Settings.ini" />
@@ -53,6 +52,8 @@
         <File filename="D:\ReneBaca\3DsMax\Micra\repo_sync\_NEW\ProSequencer.ms" />
         <File filename="D:\ReneBaca\3DsMax\Micra\repo_sync\_NEW\AutoCamMaxSwitch.ms" />
         <File filename="D:\ReneBaca\3DsMax\Micra\repo_sync\_NEW\Camera Animation\batchcamerarender_1.10.2b.ms" />
+        <File filename="D:\ReneBaca\3DsMax\CrossRoadGenerator\CrossRoadGenerator_v053_hokus_pokus.ms" />
+        <File filename="C:\Program Files\Autodesk\3ds Max 2018\scripts\ls3dutils\ls3dmaterialswitcher.ms" />
     </History>
     <GUIConfigs>
         <GUIConfig name="ToolBar" visible="yes">standard</GUIConfig>

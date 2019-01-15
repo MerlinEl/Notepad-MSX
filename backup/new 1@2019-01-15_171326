@@ -1,0 +1,33 @@
+fn pickNextCamera = (
+		
+			local o = clist.list[tasks_done+1]
+			format  "start cam:% interval:%\n" o.name [o.start, o.end]
+			sliderTime = o.start
+			end_frame = o.end
+			viewport.setCamera o.cam
+			format  "end cam:%\n" o.name
+	)
+	fn play = (
+	
+		if currentTime < end_frame then (
+			
+			print currentTime	
+			
+		) else if tasks_done < clist.list.count do (
+			
+			tasks_done += 1
+			unRegisterTimeCallback play	
+			stopAnimation()
+			
+			pickNextCamera()
+			registerTimeCallback play
+			playAnimation()
+		)
+	)
+	fn previewAnimation = (
+		
+		tasks_done = 0
+		pickNextCamera()
+		registerTimeCallback play
+		playAnimation()
+	)
