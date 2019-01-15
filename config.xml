@@ -21,7 +21,6 @@
         <Filter name="" />
         <Filter name="" />
         <Filter name="" />
-        <Filter name="" />
         <Find name="ffrm" />
         <Find name="cam_rend" />
         <Find name="coll_generator" />
@@ -46,7 +45,6 @@
     <History nbMaxFile="10" inSubMenu="no" customLength="-1">
         <File filename="E:\Aprog\Orien\Micra\Micra4\CORE\mcWindowsMessages.ms" />
         <File filename="e:\Aprog\Orien\Micra\Micra4\App\Maxscript_Settings\MXS_EditorUser.properties" />
-        <File filename="E:\Aprog\Orien\Micra\Micra4\Settings.ini" />
         <File filename="e:\Aprog\Orien\V&#x0161;ezn&#x00E1;lek\settings.xml" />
         <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\App\MSX_Editor\pthelp.cpp" />
         <File filename="D:\ReneBaca\3DsMax\Micra\repo_sync\_NEW\ProSequencer.ms" />
@@ -88,7 +86,7 @@
         <GUIConfig name="ScintillaGlobalSettings" enableMultiSelection="no" />
         <GUIConfig name="openSaveDir" value="0" defaultDirPath="" />
         <GUIConfig name="titleBar" short="no" />
-        <GUIConfig name="stylerTheme" path="D:\ReneBaca\Aprog\Notepad-MSX\stylers.xml" />
+        <GUIConfig name="stylerTheme" path="E:\Aprog\Notepad-MSX\stylers.xml" />
         <GUIConfig name="wordCharList" useDefault="yes" charsAdded="" />
         <GUIConfig name="delimiterSelection" leftmostDelimiter="40" rightmostDelimiter="41" delimiterSelectionOnEntireDocument="no" />
         <GUIConfig name="multiInst" setting="0" />
