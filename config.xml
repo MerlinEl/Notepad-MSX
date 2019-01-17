@@ -21,30 +21,29 @@
         <Filter name="" />
         <Filter name="" />
         <Filter name="" />
-        <Find name="ffrm" />
+        <Filter name="" />
+        <Find name="file_path" />
+        <Find name="l_of" />
+        <Find name="new_file" />
+        <Find name="myPath" />
+        <Find name="ss" />
+        <Find name="frm_onoff" />
         <Find name="cam_rend" />
-        <Find name="coll_generator" />
-        <Find name="bourbon" />
-        <Find name="ConstructRoadPrototype" />
-        <Find name="CreateRoadFromSpline" />
-        <Find name="SetCrossRoadWireColor finalRoad" />
-        <Find name="btn_generate" />
-        <Find name="generate road" />
-        <Find name="uv" />
+        <Find name="multilistbox" />
+        <Find name="MaterialModifier" />
+        <Find name="fill_material = MaterialModifier materialId:" />
+        <Replace name="fpath" />
+        <Replace name="fs" />
+        <Replace name="reloadPrefabs" />
+        <Replace name="bt_ReloadPrefabs" />
+        <Replace name="updateToolComponents" />
         <Replace name="AutorunDir" />
         <Replace name="mcWin32Assembly" />
         <Replace name="replaceAll" />
         <Replace name="startIndex" />
         <Replace name="count" />
-        <Replace name="setAutorunTo" />
-        <Replace name="MaxPluginsDir" />
-        <Replace name="onCheckerChanges" />
-        <Replace name="micraAutorun" />
-        <Replace name=", " />
     </FindHistory>
     <History nbMaxFile="10" inSubMenu="no" customLength="-1">
-        <File filename="E:\Aprog\Orien\Micra\Micra4\CORE\mcWindowsMessages.ms" />
-        <File filename="e:\Aprog\Orien\Micra\Micra4\App\Maxscript_Settings\MXS_EditorUser.properties" />
         <File filename="e:\Aprog\Orien\V&#x0161;ezn&#x00E1;lek\settings.xml" />
         <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\App\MSX_Editor\pthelp.cpp" />
         <File filename="D:\ReneBaca\3DsMax\Micra\repo_sync\_NEW\ProSequencer.ms" />
@@ -52,6 +51,9 @@
         <File filename="D:\ReneBaca\3DsMax\Micra\repo_sync\_NEW\Camera Animation\batchcamerarender_1.10.2b.ms" />
         <File filename="D:\ReneBaca\3DsMax\CrossRoadGenerator\CrossRoadGenerator_v053_hokus_pokus.ms" />
         <File filename="C:\Program Files\Autodesk\3ds Max 2018\scripts\ls3dutils\ls3dmaterialswitcher.ms" />
+        <File filename="d:\!2k_games\scotch_dev\resources\graphics\_data_\3dsmax\xref_paths.ms" />
+        <File filename="d:\!2k_games\scotch_dev\resources\graphics\_data_\3dsmax\lh_test_table.xml" />
+        <File filename="d:\!2k_games\scotch_dev\resources\graphics\_data_\3dsmax\coll_all_is_one.xml" />
     </History>
     <GUIConfigs>
         <GUIConfig name="ToolBar" visible="yes">standard</GUIConfig>
@@ -60,8 +62,8 @@
         <GUIConfig name="ScintillaViewsSplitter">vertical</GUIConfig>
         <GUIConfig name="UserDefineDlg" position="undocked">hide</GUIConfig>
         <GUIConfig name="TabSetting" replaceBySpace="no" size="4" />
-        <GUIConfig name="AppPosition" x="409" y="285" width="1100" height="700" isMaximized="yes" />
-        <GUIConfig name="noUpdate" intervalDays="15" nextUpdateDate="20190117">yes</GUIConfig>
+        <GUIConfig name="AppPosition" x="-2291" y="112" width="1100" height="700" isMaximized="yes" />
+        <GUIConfig name="noUpdate" intervalDays="15" nextUpdateDate="20190201">yes</GUIConfig>
         <GUIConfig name="Auto-detection">yes</GUIConfig>
         <GUIConfig name="CheckHistoryFiles">no</GUIConfig>
         <GUIConfig name="TrayIcon">no</GUIConfig>
@@ -86,7 +88,7 @@
         <GUIConfig name="ScintillaGlobalSettings" enableMultiSelection="no" />
         <GUIConfig name="openSaveDir" value="0" defaultDirPath="" />
         <GUIConfig name="titleBar" short="no" />
-        <GUIConfig name="stylerTheme" path="E:\Aprog\Notepad-MSX\stylers.xml" />
+        <GUIConfig name="stylerTheme" path="D:\ReneBaca\Aprog\Notepad-MSX\stylers.xml" />
         <GUIConfig name="wordCharList" useDefault="yes" charsAdded="" />
         <GUIConfig name="delimiterSelection" leftmostDelimiter="40" rightmostDelimiter="41" delimiterSelectionOnEntireDocument="no" />
         <GUIConfig name="multiInst" setting="0" />
