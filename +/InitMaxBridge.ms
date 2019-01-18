@@ -16,14 +16,10 @@ rollout mcNotepadBridgeDialog "Notepad++ Bridge MXSPyCOM" width:516 height:76
 	)
 	fn registerBridge = (
 		
-		local MaxUserDir = pathConfig.removePathLeaf (getDir #userMacros)
-		local MaxUserSettings = MaxUserDir + "\\Plugin.UserSettings.ini"
-		if not (doesFileExist MaxUserSettings) do return false
-		local exist = getIniSetting MaxUserSettings "Directories" "Notepad Autorun" != ""
-		if exist do return false
-		local AutorunDir = edt_path.text + "tools\MXSPyCOM\\autorun\\"
-		if not (doesDirectoryExist MaxUserSettings) do return false
-		setIniSetting MaxUserSettings "Directories" "Notepad Autorun" AutorunDir --append Notepad's++ Autorun dir to 3DsMax
+		local server_file = edt_path.text + "tools\MXSPyCOM\\initialize_COM_server.ms"
+		local max_file = (getDir #userStartupScripts)+ "\\initialize_COM_server.ms"
+		if doesFileExist max_file do deleteFile max_file --if file exists remove it (update purpose)
+		copyFile server_file max_file
 	)
 	on btn_browse pressed  do (
 		
@@ -37,7 +33,7 @@ rollout mcNotepadBridgeDialog "Notepad++ Bridge MXSPyCOM" width:516 height:76
 	on btn_accept pressed  do (
 	
 		registerBridge()
-		messageBox "Notepad++ Bridge was estabilished succecfully!\nPlease Restart Notepad++.\nHave a Good Day!" title:"Notepad++:"
+		messageBox "Notepad++ Bridge was estabilished succecfully!\nPlease Restart Notepad++.\nHave a Good Day!" title:"Micra:"
 		DestroyDialog mcNotepadBridgeDialog
 	)
 	on mcNotepadBridgeDialog open do getNotepadPath()

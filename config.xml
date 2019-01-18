@@ -22,16 +22,16 @@
         <Filter name="" />
         <Filter name="" />
         <Filter name="" />
+        <Find name="MaxUserDir" />
+        <Find name="previewAnimation" />
+        <Find name="renderActiveCameras" />
+        <Find name="render_cam" />
+        <Find name="escape" />
+        <Find name="materialId" />
+        <Find name="target" />
         <Find name="file_path" />
         <Find name="l_of" />
         <Find name="new_file" />
-        <Find name="myPath" />
-        <Find name="ss" />
-        <Find name="frm_onoff" />
-        <Find name="cam_rend" />
-        <Find name="multilistbox" />
-        <Find name="MaterialModifier" />
-        <Find name="fill_material = MaterialModifier materialId:" />
         <Replace name="fpath" />
         <Replace name="fs" />
         <Replace name="reloadPrefabs" />
@@ -44,16 +44,16 @@
         <Replace name="count" />
     </FindHistory>
     <History nbMaxFile="10" inSubMenu="no" customLength="-1">
-        <File filename="e:\Aprog\Orien\V&#x0161;ezn&#x00E1;lek\settings.xml" />
-        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\App\MSX_Editor\pthelp.cpp" />
-        <File filename="D:\ReneBaca\3DsMax\Micra\repo_sync\_NEW\ProSequencer.ms" />
-        <File filename="D:\ReneBaca\3DsMax\Micra\repo_sync\_NEW\AutoCamMaxSwitch.ms" />
-        <File filename="D:\ReneBaca\3DsMax\Micra\repo_sync\_NEW\Camera Animation\batchcamerarender_1.10.2b.ms" />
         <File filename="D:\ReneBaca\3DsMax\CrossRoadGenerator\CrossRoadGenerator_v053_hokus_pokus.ms" />
         <File filename="C:\Program Files\Autodesk\3ds Max 2018\scripts\ls3dutils\ls3dmaterialswitcher.ms" />
         <File filename="d:\!2k_games\scotch_dev\resources\graphics\_data_\3dsmax\xref_paths.ms" />
         <File filename="d:\!2k_games\scotch_dev\resources\graphics\_data_\3dsmax\lh_test_table.xml" />
         <File filename="d:\!2k_games\scotch_dev\resources\graphics\_data_\3dsmax\coll_all_is_one.xml" />
+        <File filename="D:\ReneBaca\Aprog\Notepad-MSX\tools\MXSPyCOM\autorun\initialize_COM_server.ms" />
+        <File filename="D:\ReneBaca\Aprog\Notepad-MSX\tools\MXSPyCOM\maxscriptRun.as" />
+        <File filename="D:\ReneBaca\Aprog\Notepad-MSX\tools\MXSPyCOM\README.md" />
+        <File filename="D:\ReneBaca\Aprog\Notepad-MSX\tools\MXSPyCOM\maxscriptRunSelection.as" />
+        <File filename="D:\ReneBaca\Aprog\Notepad-MSX\InitMaxBridge.ms" />
     </History>
     <GUIConfigs>
         <GUIConfig name="ToolBar" visible="yes">standard</GUIConfig>

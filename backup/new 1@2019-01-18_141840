@@ -1,0 +1,19 @@
+if (keyboard.escPressed==true) then
+					(
+						logdisplay = cam_rd_list[i] + " : CANCEL - Rendering interrupted by user"
+			
+						if queryBox "Do you want to cancel rendering ?" then
+						(
+							cancel_rd = true
+		    				undisplay r_bitmap
+							if (logfile.checked) then
+								format "%\n" logdisplay to:log_f_str 	
+							exit
+						)	
+					)
+					
+					
+					
+					
+					
+					export_little_italy_02
