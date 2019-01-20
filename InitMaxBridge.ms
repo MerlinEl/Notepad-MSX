@@ -22,8 +22,12 @@ rollout mcNotepadBridgeDialog "Notepad++ Bridge MXSPyCOM" width:516 height:76
 		local exist = getIniSetting MaxUserSettings "Directories" "Notepad Autorun" != ""
 		if exist do return false
 		local AutorunDir = edt_path.text + "tools\MXSPyCOM\\autorun\\"
-		if not (doesDirectoryExist MaxUserSettings) do return false
+	--format "AutorunDir:%\n" AutorunDir
+		if not (doesDirectoryExist AutorunDir) do return false
 		setIniSetting MaxUserSettings "Directories" "Notepad Autorun" AutorunDir --append Notepad's++ Autorun dir to 3DsMax
+		
+		messageBox "Notepad++ Bridge was estabilished succecfully!\nPlease Restart Notepad++.\nHave a Good Day!" title:"Notepad++:"
+		DestroyDialog mcNotepadBridgeDialog
 	)
 	on btn_browse pressed  do (
 		
@@ -34,12 +38,7 @@ rollout mcNotepadBridgeDialog "Notepad++ Bridge MXSPyCOM" width:516 height:76
 		)
 	)
 	on btn_cancel pressed  do (DestroyDialog mcNotepadBridgeDialog)
-	on btn_accept pressed  do (
-	
-		registerBridge()
-		messageBox "Notepad++ Bridge was estabilished succecfully!\nPlease Restart Notepad++.\nHave a Good Day!" title:"Notepad++:"
-		DestroyDialog mcNotepadBridgeDialog
-	)
+	on btn_accept pressed  do registerBridge()
 	on mcNotepadBridgeDialog open do getNotepadPath()
 )
 CreateDialog mcNotepadBridgeDialog

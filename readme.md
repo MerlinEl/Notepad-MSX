@@ -7,6 +7,11 @@ Initialize MXSPyCOM - 3DsMax Bridge
 
 <img src="/tools/MXSPyCOM/feature-2.gif" alt="Syntax Highlight"/>
 
+Posible Errors and Solutions
+****************************
+Error		:The specified script file does not exist on disk. 
+Solution	:not use folders with spaces, like: "Camera Animation" --> "Camera_Animation" 
+
 
 What is Notepad++?
 ******************

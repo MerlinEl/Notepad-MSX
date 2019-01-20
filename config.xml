@@ -22,38 +22,38 @@
         <Filter name="" />
         <Filter name="" />
         <Filter name="" />
-        <Find name="MaxUserDir" />
-        <Find name="previewAnimation" />
-        <Find name="renderActiveCameras" />
-        <Find name="render_cam" />
-        <Find name="escape" />
-        <Find name="materialId" />
-        <Find name="target" />
-        <Find name="file_path" />
-        <Find name="l_of" />
-        <Find name="new_file" />
+        <Find name="start_index" />
+        <Find name="get" />
+        <Find name="0x100" />
+        <Find name="EM_FINDTEXT" />
+        <Find name="find" />
+        <Find name="EM_SETSEL" />
+        <Find name="SCI_GOTOPOS" />
+        <Find name="SCI_GETCURRENTPOS" />
+        <Find name="EM_REPLACESEL" />
+        <Find name="registerAction" />
+        <Replace name="offset" />
+        <Replace name="action_key" />
+        <Replace name="_values" />
+        <Replace name="_keys" />
+        <Replace name="animating" />
         <Replace name="fpath" />
         <Replace name="fs" />
         <Replace name="reloadPrefabs" />
         <Replace name="bt_ReloadPrefabs" />
         <Replace name="updateToolComponents" />
-        <Replace name="AutorunDir" />
-        <Replace name="mcWin32Assembly" />
-        <Replace name="replaceAll" />
-        <Replace name="startIndex" />
-        <Replace name="count" />
     </FindHistory>
     <History nbMaxFile="10" inSubMenu="no" customLength="-1">
-        <File filename="D:\ReneBaca\3DsMax\CrossRoadGenerator\CrossRoadGenerator_v053_hokus_pokus.ms" />
-        <File filename="C:\Program Files\Autodesk\3ds Max 2018\scripts\ls3dutils\ls3dmaterialswitcher.ms" />
-        <File filename="d:\!2k_games\scotch_dev\resources\graphics\_data_\3dsmax\xref_paths.ms" />
-        <File filename="d:\!2k_games\scotch_dev\resources\graphics\_data_\3dsmax\lh_test_table.xml" />
-        <File filename="d:\!2k_games\scotch_dev\resources\graphics\_data_\3dsmax\coll_all_is_one.xml" />
-        <File filename="D:\ReneBaca\Aprog\Notepad-MSX\tools\MXSPyCOM\autorun\initialize_COM_server.ms" />
-        <File filename="D:\ReneBaca\Aprog\Notepad-MSX\tools\MXSPyCOM\maxscriptRun.as" />
-        <File filename="D:\ReneBaca\Aprog\Notepad-MSX\tools\MXSPyCOM\README.md" />
-        <File filename="D:\ReneBaca\Aprog\Notepad-MSX\tools\MXSPyCOM\maxscriptRunSelection.as" />
-        <File filename="D:\ReneBaca\Aprog\Notepad-MSX\InitMaxBridge.ms" />
+        <File filename="e:\Aprog\Notepad-MSX\readme.md" />
+        <File filename="e:\Aprog\Orien\Micra\Micra4\User\Orien_Star\Profile_1.ini" />
+        <File filename="e:\Aprog\Orien\Micra\Micra4\Transformer_v0.08.ms" />
+        <File filename="e:\Aprog\Orien\Micra\Micra4\Object_Planter_v0.01.ms" />
+        <File filename="e:\Aprog\Orien\Micra\Micra4\Dialog_Creator_Net_v0.31.ms" />
+        <File filename="e:\Aprog\Orien\Micra\Micra4\CORE\mcGM.ms" />
+        <File filename="E:\Aprog\Orien\Micra\Micra4\Struct_Action_v0.03.ms" />
+        <File filename="e:\Aprog\Orien\Micra\Micra4\MSX_Scintila_Editor_v0.01.ms" />
+        <File filename="E:\Aprog\Orien\Micra\Micra4\CORE\mcObjects.ms" />
+        <File filename="E:\Aprog\Orien\Micra\Micra4\CORE\mcWin32.ms" />
     </History>
     <GUIConfigs>
         <GUIConfig name="ToolBar" visible="yes">standard</GUIConfig>
@@ -62,7 +62,7 @@
         <GUIConfig name="ScintillaViewsSplitter">vertical</GUIConfig>
         <GUIConfig name="UserDefineDlg" position="undocked">hide</GUIConfig>
         <GUIConfig name="TabSetting" replaceBySpace="no" size="4" />
-        <GUIConfig name="AppPosition" x="-2291" y="112" width="1100" height="700" isMaximized="yes" />
+        <GUIConfig name="AppPosition" x="371" y="257" width="1100" height="700" isMaximized="yes" />
         <GUIConfig name="noUpdate" intervalDays="15" nextUpdateDate="20190201">yes</GUIConfig>
         <GUIConfig name="Auto-detection">yes</GUIConfig>
         <GUIConfig name="CheckHistoryFiles">no</GUIConfig>
@@ -88,7 +88,7 @@
         <GUIConfig name="ScintillaGlobalSettings" enableMultiSelection="no" />
         <GUIConfig name="openSaveDir" value="0" defaultDirPath="" />
         <GUIConfig name="titleBar" short="no" />
-        <GUIConfig name="stylerTheme" path="D:\ReneBaca\Aprog\Notepad-MSX\stylers.xml" />
+        <GUIConfig name="stylerTheme" path="E:\Aprog\Notepad-MSX\stylers.xml" />
         <GUIConfig name="wordCharList" useDefault="yes" charsAdded="" />
         <GUIConfig name="delimiterSelection" leftmostDelimiter="40" rightmostDelimiter="41" delimiterSelectionOnEntireDocument="no" />
         <GUIConfig name="multiInst" setting="0" />

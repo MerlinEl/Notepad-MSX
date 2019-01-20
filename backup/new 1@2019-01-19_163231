@@ -1,0 +1,140 @@
+-----------------------------------------------------------------------------------------------------
+		--IF CMD contains [fileInVersion] create new script or register existing
+			--REGISTER scipt to Settings.ini [Version]
+			--APPEND action  to Actions.ini  [category_name] [action_name]
+		-----------------------------------------------------------------------------------------------------
+		if findString action_cmd "fileInVersion" != undefined then (
+		
+			--check if file exists
+			local script_path = "undefined"
+			local root_files = getFiles (Micra.rootDir + "*.ms")
+			for f in root_files do (
+			
+				if findString f action_key != undefined do (
+				
+					script_path = f
+					exit --break loop
+				)
+			)
+			format "search > script [ % ] exists:% script_path:%\n" action_key (doesFileExist script_path) script_path  
+			if doesFileExist script_path then ( --if script file found
+			
+				--check if script is registred
+				local script_version = Micra.getScriptVersion action_key
+				if script_version != "" then ( --if already registred, abort 
+				
+					format "mcFile > appendActionOrCreateScript > Script [ % ] is already registred. Operation aborted.\n" action_key
+					return false
+				) else ( --register existing script
+					
+					local script_file_name = filenameFromPath script_path
+					format "mcFile > appendActionOrCreateScript > Script [ % ] is registred succesfully.\n" script_file_name
+--enable it > registerMicraScript script_file_name
+--enable it > setIniSetting Micra.ActionsIni category_name action_key action_data
+				)
+				
+			) else ( --crete new script
+			
+				local script_file_name = action_key + "_v0.01.ms"
+				script_path = Micra.rootDir + script_file_name
+				local template_file = Micra.rootDir + "CORE\\" + "_template.txt"
+ 				--copy template in to file
+				copyFile template_file script_path
+--enable it > registerMicraScript script_file_name
+--enable it > setIniSetting Micra.ActionsIni category_name action_key action_data
+				format "mcFile > appendActionOrCreateScript > Script [ % ] is created succesfully.\n" script_file_name
+			)
+			--open script  
+			edit script_path
+			return true
+		-----------------------------------------------------------------------------------------------------
+		--ELSE CMD is structure like > mcAction.doSomething()
+		--Append to existing structure or create new one in [CORE] directory
+			--REGISTER scipt to Settings.ini [Structures]
+			--APPEND action  to Actions.ini  [category_name] [action_name]
+		-----------------------------------------------------------------------------------------------------		
+		) else (
+	
+			--get structure file first
+			local cmd_arr = splitCommand action_cmd --#("mcAction", "capHoles")
+			local struct_name = arr[1]
+			local actions_file = getStructPathByName struct_name 
+			if actions_file != undefined and doesFileExist actions_file then ( --append new function
+			
+				format "mcFile > appendActionOrCreateScript > action structure found in file:%\n" actions_file
+				--open struct_file
+				edit actions_file
+				--find struct start
+				
+				--find struct end
+
+				--append new function at end
+			
+			) else ( --create new mcStructure in folder CORE (also include to )
+			
+				format "mcFile > appendActionOrCreateScript > action structure not exists"
+				local script_file_name = Micra.rootDir + "CORE\\" + struct_name + "_v0.01.ms"
+				local template_file = Micra.rootDir + "CORE\\" + "_template.txt"
+				copyFile template_file script_path
+--enable it > registerMicraScript script_file_name core:true
+--enable it > setIniSetting Micra.ActionsIni category_name action_key action_data
+			)
+			
+			--local actions_file = Micra.getScriptPath "Struct_Action"
+			
+			
+			
+			--format "mcFile > appendActionOrCreateScript > Edit Action Structure:%\n" actions_file
+			
+			--mcSystem -- this structure is elsewhere make new one in Actions ... maybe
+			
+			--if structure not exist create new structure
+			--find if action exists else create new one under category
+		)
+
+		--check if action exists
+/*if mcFile.getActionByName action_key != undefined do (
+
+	mcPopUp.msgBox ("Action [ "+action_key+" ] already exists. Operation Aborted.") title:"Customize"
+	return false
+)*/	
+		/*
+--???
+Autosave_Switch = 3, mcSystem.autosaveSwitch() , Autosave Switch'
+Keyboard_Switch = 257, mcSystem.keyboardSwitch() , Keyboard Switch'
+Get_SHGame_Version = 183, mcSystem.getSHGameVersion(), Get SHGame Version
+
+		-------------------------------------------
+		ini data structure > icon, cmd, toolip
+		106, mcAnimation.reverse 0 10, Reverse Animation
+		221, Micra.fileInVersion 3DGallery, 3D Gallery
+		63, max align, Align
+		32, ShellLaunch C:\WINDOWS\system32\calc.exe , Calculator
+		2 , (if checkForSave() != false do resetMaxFile #noPrompt),Max Reset --#noPrompt	
+		*/		
+			
+		--if structureExists
+		
+		--open file and focus at end of structure
+		--insert new function
+		
+		--choices
+		--is new file (Micra.fileInVersion "3DGallery")
+		--is existing file (Micra.fileInVersion "3DGallery")
+		--is existing file but new function (mcAction.snapToSurface())
+
+	
+		/*if findString action_cmd "fileInVersion" != undefined do return "Micra_Main.ms"
+		local dot_index = findString action_cmd "."
+		local root_class = substring action_cmd dot_index
+		
+		mcString.src
+
+		local fname = mcFile.getActionParams action_cmd --get params as fname
+		local current_dir = Micra.RootDir
+		local fversion = getIniSetting Micra.DefaultSettings "Version" fname
+		local file = current_dir + fname + "_v" + fversion + ".ms"
+		if Micra.debug == 10 do format "mcFile > showActionSource > file:%\n" file*/
+		
+		--save in Action.ini
+		--setIniSetting Micra.ActionsIni category_name action_key action_data

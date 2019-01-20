@@ -1,7 +1,13 @@
 # MXSPyCOM
 A modern version of MXSCOM, to allow for editing &amp; execution of 3ds Max MaxScript and Python files from external code editors.
-
+----------------------------------------------------------------------------------------------------------------------------------------
 Notepad ++ Instructions:
+----------------------------------------------------------------------------------------------------------------------------------------
+
+1) drop file [ ....\Notepad++\InitMaxBridge.ms ] in to 3DsMax window and follow instructions
+
+----------------------------------------------------------------------------------------------------------------------------------------
+Old way:
 ----------------------------------------------------------------------------------------------------------------------------------------
 1) press F5
 2) add this path: "<notepad++ root directory>\tools\MXSPyCOM\MXSPyCOM.exe" -s "$(FULL_CURRENT_PATH)"
