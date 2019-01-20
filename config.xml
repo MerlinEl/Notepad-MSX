@@ -22,6 +22,7 @@
         <Filter name="" />
         <Filter name="" />
         <Filter name="" />
+        <Find name="mcSkin" />
         <Find name="start_index" />
         <Find name="get" />
         <Find name="0x100" />
@@ -31,7 +32,6 @@
         <Find name="SCI_GOTOPOS" />
         <Find name="SCI_GETCURRENTPOS" />
         <Find name="EM_REPLACESEL" />
-        <Find name="registerAction" />
         <Replace name="offset" />
         <Replace name="action_key" />
         <Replace name="_values" />
@@ -44,16 +44,16 @@
         <Replace name="updateToolComponents" />
     </FindHistory>
     <History nbMaxFile="10" inSubMenu="no" customLength="-1">
-        <File filename="e:\Aprog\Notepad-MSX\readme.md" />
-        <File filename="e:\Aprog\Orien\Micra\Micra4\User\Orien_Star\Profile_1.ini" />
-        <File filename="e:\Aprog\Orien\Micra\Micra4\Transformer_v0.08.ms" />
-        <File filename="e:\Aprog\Orien\Micra\Micra4\Object_Planter_v0.01.ms" />
-        <File filename="e:\Aprog\Orien\Micra\Micra4\Dialog_Creator_Net_v0.31.ms" />
-        <File filename="e:\Aprog\Orien\Micra\Micra4\CORE\mcGM.ms" />
-        <File filename="E:\Aprog\Orien\Micra\Micra4\Struct_Action_v0.03.ms" />
-        <File filename="e:\Aprog\Orien\Micra\Micra4\MSX_Scintila_Editor_v0.01.ms" />
-        <File filename="E:\Aprog\Orien\Micra\Micra4\CORE\mcObjects.ms" />
+        <File filename="E:\Aprog\Orien\Micra\Micra4\CORE\mcString.ms" />
+        <File filename="E:\Aprog\Orien\Micra\Micra4\CORE\mcSystem.ms" />
+        <File filename="E:\Aprog\Orien\Micra\Micra4\CORE\mcTime.ms" />
+        <File filename="E:\Aprog\Orien\Micra\Micra4\CORE\mcTransform.ms" />
+        <File filename="E:\Aprog\Orien\Micra\Micra4\CORE\mcUIColors.ms" />
         <File filename="E:\Aprog\Orien\Micra\Micra4\CORE\mcWin32.ms" />
+        <File filename="E:\Aprog\Orien\Micra\Micra4\CORE\mcWinMsg.ms" />
+        <File filename="E:\Aprog\Orien\Micra\Micra4\CORE\_template.txt" />
+        <File filename="E:\Aprog\Orien\Micra\Micra4\CORE\mcObjects.ms" />
+        <File filename="E:\Aprog\Orien\Micra\Micra4\Struct_Action_v0.03.ms" />
     </History>
     <GUIConfigs>
         <GUIConfig name="ToolBar" visible="yes">standard</GUIConfig>
