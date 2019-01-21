@@ -22,16 +22,18 @@
         <Filter name="" />
         <Filter name="" />
         <Filter name="" />
+        <Find name="destination" />
+        <Find name="root_dir" />
+        <Find name="backupFile" />
+        <Find name="btn_set_active_version" />
+        <Find name="50" />
+        <Find name="rails" />
+        <Find name="rail" />
+        <Find name="164" />
         <Find name="mcSkin" />
         <Find name="start_index" />
-        <Find name="get" />
-        <Find name="0x100" />
-        <Find name="EM_FINDTEXT" />
-        <Find name="find" />
-        <Find name="EM_SETSEL" />
-        <Find name="SCI_GOTOPOS" />
-        <Find name="SCI_GETCURRENTPOS" />
-        <Find name="EM_REPLACESEL" />
+        <Replace name="dest_dir" />
+        <Replace name="destination" />
         <Replace name="offset" />
         <Replace name="action_key" />
         <Replace name="_values" />
@@ -40,12 +42,8 @@
         <Replace name="fpath" />
         <Replace name="fs" />
         <Replace name="reloadPrefabs" />
-        <Replace name="bt_ReloadPrefabs" />
-        <Replace name="updateToolComponents" />
     </FindHistory>
     <History nbMaxFile="10" inSubMenu="no" customLength="-1">
-        <File filename="E:\Aprog\Orien\Micra\Micra4\CORE\mcString.ms" />
-        <File filename="E:\Aprog\Orien\Micra\Micra4\CORE\mcSystem.ms" />
         <File filename="E:\Aprog\Orien\Micra\Micra4\CORE\mcTime.ms" />
         <File filename="E:\Aprog\Orien\Micra\Micra4\CORE\mcTransform.ms" />
         <File filename="E:\Aprog\Orien\Micra\Micra4\CORE\mcUIColors.ms" />
@@ -54,6 +52,7 @@
         <File filename="E:\Aprog\Orien\Micra\Micra4\CORE\_template.txt" />
         <File filename="E:\Aprog\Orien\Micra\Micra4\CORE\mcObjects.ms" />
         <File filename="E:\Aprog\Orien\Micra\Micra4\Struct_Action_v0.03.ms" />
+        <File filename="C:\temp\new 3.ms" />
     </History>
     <GUIConfigs>
         <GUIConfig name="ToolBar" visible="yes">standard</GUIConfig>
@@ -62,7 +61,7 @@
         <GUIConfig name="ScintillaViewsSplitter">vertical</GUIConfig>
         <GUIConfig name="UserDefineDlg" position="undocked">hide</GUIConfig>
         <GUIConfig name="TabSetting" replaceBySpace="no" size="4" />
-        <GUIConfig name="AppPosition" x="371" y="257" width="1100" height="700" isMaximized="yes" />
+        <GUIConfig name="AppPosition" x="-1838" y="211" width="1100" height="700" isMaximized="yes" />
         <GUIConfig name="noUpdate" intervalDays="15" nextUpdateDate="20190201">yes</GUIConfig>
         <GUIConfig name="Auto-detection">yes</GUIConfig>
         <GUIConfig name="CheckHistoryFiles">no</GUIConfig>
@@ -88,7 +87,7 @@
         <GUIConfig name="ScintillaGlobalSettings" enableMultiSelection="no" />
         <GUIConfig name="openSaveDir" value="0" defaultDirPath="" />
         <GUIConfig name="titleBar" short="no" />
-        <GUIConfig name="stylerTheme" path="E:\Aprog\Notepad-MSX\stylers.xml" />
+        <GUIConfig name="stylerTheme" path="D:\ReneBaca\Aprog\Notepad-MSX\stylers.xml" />
         <GUIConfig name="wordCharList" useDefault="yes" charsAdded="" />
         <GUIConfig name="delimiterSelection" leftmostDelimiter="40" rightmostDelimiter="41" delimiterSelectionOnEntireDocument="no" />
         <GUIConfig name="multiInst" setting="0" />

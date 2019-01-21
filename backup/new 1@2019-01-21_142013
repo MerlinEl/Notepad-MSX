@@ -1,0 +1,14 @@
+$.parent
+fn shareSameParent = (
+
+	local p = for o in selection where o.parent != undefined do exit with o.parent
+	if classOf p == LS3DModel do selection.parent = p
+)
+shareSameParent()
+$.ishidden = false
+$.parent
+$.name
+"Mesh001"
+
+
+crossroad_corner_2_4RP_to_2_4RP_cross_2_4P_vs_4_4P
