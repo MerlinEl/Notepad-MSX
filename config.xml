@@ -22,16 +22,19 @@
         <Filter name="" />
         <Filter name="" />
         <Filter name="" />
+        <Find name="compareLabels" />
+        <Find name="mcDate" />
+        <Find name="MICRA_TIME" />
+        <Find name="getTime" />
+        <Find name="mcTime" />
         <Find name="destination" />
         <Find name="root_dir" />
         <Find name="backupFile" />
         <Find name="btn_set_active_version" />
         <Find name="50" />
-        <Find name="rails" />
-        <Find name="rail" />
-        <Find name="164" />
-        <Find name="mcSkin" />
-        <Find name="start_index" />
+        <Replace name="compareDates" />
+        <Replace name="MICRA_DATE" />
+        <Replace name="mcDate" />
         <Replace name="dest_dir" />
         <Replace name="destination" />
         <Replace name="offset" />
@@ -39,20 +42,18 @@
         <Replace name="_values" />
         <Replace name="_keys" />
         <Replace name="animating" />
-        <Replace name="fpath" />
-        <Replace name="fs" />
-        <Replace name="reloadPrefabs" />
     </FindHistory>
     <History nbMaxFile="10" inSubMenu="no" customLength="-1">
-        <File filename="E:\Aprog\Orien\Micra\Micra4\CORE\mcTime.ms" />
-        <File filename="E:\Aprog\Orien\Micra\Micra4\CORE\mcTransform.ms" />
-        <File filename="E:\Aprog\Orien\Micra\Micra4\CORE\mcUIColors.ms" />
         <File filename="E:\Aprog\Orien\Micra\Micra4\CORE\mcWin32.ms" />
         <File filename="E:\Aprog\Orien\Micra\Micra4\CORE\mcWinMsg.ms" />
         <File filename="E:\Aprog\Orien\Micra\Micra4\CORE\_template.txt" />
         <File filename="E:\Aprog\Orien\Micra\Micra4\CORE\mcObjects.ms" />
         <File filename="E:\Aprog\Orien\Micra\Micra4\Struct_Action_v0.03.ms" />
         <File filename="C:\temp\new 3.ms" />
+        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\CORE\mcEvents.ms" />
+        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\CORE\mcTime.ms" />
+        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\Settings.ini" />
+        <File filename="D:\ReneBaca\3DsMax\Micra\Micra4\CORE\mcDate - Copy.ms" />
     </History>
     <GUIConfigs>
         <GUIConfig name="ToolBar" visible="yes">standard</GUIConfig>
