@@ -1,0 +1,19 @@
+	xml = mcXML (Micra.TempDir + "xml_test_01.xml")
+	xml.url
+	xml.exists()
+	itms = xml.getItems "books"
+	ch = xml.getChildren() --root children
+	mcXML.toString()
+
+xml = mcXML(Micra.TempDir + "xml_test_22.xml")
+xml.exists()
+xml.create "BOOKS"
+xml.toString()
+
+writer = dotNetClass "System.Xml.XmlWriter"
+writerSettings = dotNetObject "System.Xml.XmlWriterSettings"
+writerSettings.Indent = true
+writerSettings.NewLineOnAttributes = true	
+writer = writer.Create file writerSettings	
+doc.Save writer
+writer.Close()
