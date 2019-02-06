@@ -17,3 +17,61 @@ writerSettings.NewLineOnAttributes = true
 writer = writer.Create file writerSettings	
 doc.Save writer
 writer.Close()
+
+
+
+xml = mcXML (Micra.TempDir + "xml_test_01.xml")
+xml.toString()
+xml.declaration
+xml.doc.DocumentElement.OuterXml
+
+
+
+ XmlSerializer xsSubmit = new XmlSerializer(typeof(MyObject));
+ var subReq = new MyObject();
+ var xml = "";
+
+ using(var sww = new StringWriter())
+ {
+     using(XmlWriter writer = XmlWriter.Create(sww))
+     {
+         xsSubmit.Serialize(writer, subReq);
+         xml = sww.ToString(); // Your XML
+     }
+ }
+
+  .NewLineChars : <System.String>
+  .NewLineHandling : <System.Xml.NewLineHandling>
+  .NewLineOnAttributes : <System.Boolean>
+
+settings = dotNetObject "System.Xml.XmlWriterSettings"
+settings.Indent = true;
+--settings.NewLine = (dotnetClass "Environment").NewLine
+XmlWriter = dotNetClass "System.Xml.XmlWriter"
+writer = XmlWriter.Create (Micra.TempDir + "xml_test_07.xml") settings
+XmlWriter.ToString()
+writer.close()
+writer.flush()
+xml.Save(writer)
+
+
+stringWriter = dotNetObject "System.IO.StringWriter"
+mlTextWriter = XmlWriter.Create stringWriter
+mlTextWriter.ToString()
+
+xml = mcXML (Micra.TempDir + "xml_test_01.xml")
+xml = mcXML (Micra.TempDir + "xml_test_07.xml")
+xml.exists()
+xml.fromString (
+
+	"<?xml version='1.0' ?>\n" +
+	"<book genre='novel' ISBN='1-861001-57-5'>\n" +
+	"\t<title>Pride And Prejudice</title>\n" +
+	"</book>"
+)
+xml.doc.PreserveWhitespace = false
+xml.toString()
+xml.save()
+mcAction.getObjectProps()
+ LayerManager.getLayerFromName  "lh_02_little_italy_block_g"
+$.layer.name
