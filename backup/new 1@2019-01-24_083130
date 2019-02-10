@@ -1,0 +1,10 @@
+TODO 
+--check if action is deleted before load button icon
+--if is deleted remove registry from * Current Profile * and * Temp Profile *
+
+Profile [buttons]
+btn_B2=Move_To_X
+
+Actions [Object]
+Move_To_X          = 28, mcAction.object_move_to_grid(),Move To X
+
