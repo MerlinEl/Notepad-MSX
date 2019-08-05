@@ -1,0 +1,8 @@
+	fn streamClosed s a = (
+	--dotNet.addEventHandler WebClient "DownloadFileCompleted" downloadCompleted
+
+		format "Stream closed...\n"
+	),
+	
+	--dotnet.addeventhandler readStream "Closed" streamClosed
+	format "Stream get version...\n"	

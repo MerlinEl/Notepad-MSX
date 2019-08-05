@@ -1,0 +1,71 @@
+Global gTestCa = attributes TestCa attribID:#(0x70be5bdb, 0x1c99ce11)(
+
+	local thisNode
+	local cbID = #RoadToolCallcacksSet
+	parameters params ( 
+		
+		roadSpline 		type:#maxObject
+		controlsStr		type:#string
+	)
+	rollout rParams "RolTest" width:160 height:324
+	(
+			GroupBox 	grpPose 			"Skin Pose"				width:152 height:80		align:#center
+			button		btnSetSkinPose 		"Set as Skin Pose" 		width:116 height:16		offset:[0,-68] --enabled:false					
+			spinner		spn_x	"PosX:" width:100 height:20	align:#left offset:[10,-85] type:#integer range:[1, 1000, 10]
+	)
+	fn getNodes chr = (
+
+		for n in (refs.dependents chr) where ((isValidNode n) and n.baseobject == chr) collect n
+	)
+	fn initThisNode = (
+		
+		if thisNode == undefined then thisNode = (getNodes this)[1]
+		
+	)
+	fn updateMove 
+	on rParams open do (
+
+		--callbacks.addScript #sceneUndo "g_characterTimer.active = true" id:cbID
+	)
+   /* on spn_x get val do ()
+	on spn_x set val do ()*/
+	on detachedFromNode roadSpline do (
+
+		format "object destroyed:%\n" roadSpline
+	)
+	on update do (
+
+		initThisNode()
+		format "updated: %\n" this
+	)
+	on create do format "created: %\n" this
+	on clone orig do (
+	
+		format "cloned: % : % : % : %\n" this orig (this == orig) (delegate == orig.delegate)
+	)
+	on deleted do (
+	
+		format "deleted:%\n" this
+	)
+	--on attachedToNode <nodeVar> do ...
+	--on detachedFromNode <node> do ...
+	/*when transform $Body changes do (
+	
+		print "moved"
+	)*/
+)
+custAttributes.add $ gTestCa #unique
+$.roadSpline = $Line001
+
+
+		--register callbacks
+		mcLiveMeasureCallbacks = NodeEventCallback mouseUp:true delay:1000 \
+		selectionChanged:selectionChanged \
+		deleted:nodeDeleted \
+		geometryChanged:geometryChanged \
+		callbackBegin: cbBegin \
+		callbackEnd: cbEnd
+		
+		
+				mcLiveMeasureCallbacks = undefined --unregister selection change callbacks
+		gc()-- light:true

@@ -1,0 +1,26 @@
+template_facade_basic.xml
+template_facade_blend.xml
+template_facade_colored.xml
+template_facade_colored_2uv.xml
+template_general.xml
+template_general_2uv.xml
+template_roads.xml
+template_terrain_3blend.xml
+template_terrain_shore.xml
+
+
+
+	local fussion_mats	= #(
+	
+		"base/general", 
+		"base/general_2uv", 
+		"base/terrain", 
+		"base/terrain_2blend", 
+		"base/terrain_3blend", 
+		"base/facade_colored"
+		"base/facade_basic"
+		"base/facade_blend"
+		"base/facade_colored_2uv"
+		"base/roads"
+		"base/terrain_shore"
+	)

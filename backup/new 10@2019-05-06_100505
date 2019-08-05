@@ -1,0 +1,10 @@
+fn linkConstraint sel = (
+
+	for o in sel do (
+
+
+		o.controller = link_constraint()
+		o.controller.addTarget $Dummy001 1
+	)
+)
+linkConstraint selection

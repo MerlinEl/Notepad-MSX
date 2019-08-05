@@ -1,0 +1,48 @@
+---------------------------
+Warning
+---------------------------
+The MassFX authored in this file was created with a newer version of the plugins. Forward compatibility is not supported, so things might not behave properly.
+---------------------------
+OK   
+---------------------------
+The MassFX version warning is just caused by script which checks each Max file 
+during load and looks for the MassFX properties in those files. 
+If the version differs it triggers the warning. MassFX properties get saved with each file, 
+even if you never used MassFX in them ...
+IMHO not a very cleverly coded solution, but as long as you are not using MassFX 
+in your scenes you simply can ignore those warnings. As Max does'nt crash right at load time 
+when the warning appears, the crash is 100% not related to MassFX.
+
+
+
+MassFX properties
+
+(
+fn hasMassFXMod o = 
+   (
+   result = false
+   
+   if o.modifiers.count > 0 then
+      (
+      for t = 1 to o.modifiers.count do
+         (
+         if (classof o.modifiers == MassFX_RBody) then
+            result = true
+         )
+      )
+   result
+   )   
+      
+clearSelection()
+   
+for obj in objects do   
+   (
+   if hasMassFXMod obj then
+      selectMore obj
+   )
+)
+
+
+pxStuff = #(UConstraint, pxJoint, Skeleton, nvRagdoll, nvBox, nvCapsule, nvSphere)
+for i in objects do for j in i.modifiers do if (classof j==MassFX_RBody) do deletemodifier i j
+for i in objects where (finditem pxStuff (classof i))>0 do delete i

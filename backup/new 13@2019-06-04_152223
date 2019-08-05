@@ -1,0 +1,57 @@
+plugin Shape SBScriptLinkShape
+name:"ScriptLink"
+classID:#(0xC05703, 0x177c1aed)
+extends:SplineShape
+category:"Splines"
+replaceUI:true 
+(
+	local  attSBScriptLink = attributes  SBScriptLink
+	(
+		parameters  paramsScriptLink (
+		
+		objectType type:#index default:g_objTypeScriptLink
+		linkScript type:#node 
+		linkObject type:#node
+		)
+	)
+	on  create do
+	(
+		--define the attributes
+		custAttributes.add this attSBScriptLink #unique
+	)
+	fn  initCallbacks self = (
+	
+		print "Adding Link callbacks"
+		when  transform self.linkScript changes handleAt:#redrawViews obj do (
+		
+			obj.UpdateLinkNodes obj
+		)
+		when  transform self.linkObject changes handleAt:#redrawViews obj do (
+		
+			obj.UpdateLinkNodes obj
+		)
+		--Remove the link from each object
+		when  self deleted link do (
+		
+			print "Deleting link from both object's lists"
+			deleteItem link.linkScript.linkNodes (findItem link.linkScript.linkNodes link)
+			deleteItem link.linkObject.linkNodes (findItem link.linkObject.linkNodes link)
+		)
+	)
+	fn  initLink self script object = (
+	
+		self.linkScript = script
+		self.linkObject = object
+		addNewSpline (convertTo self SplineShape) 
+		addKnot self 1 #corner #line self.linkScript.pos
+		addKnot self 1 #corner #line self.linkObject.pos
+		updateShape self
+		initCallbacks self
+	)
+)
+
+--Create a line from the itemA to the itemB
+linkLine = SBScriptLinkShape pos:selectedObj.pos
+linkLine.wirecolor = $.wirecolor
+linkLine.initLink linkLine $ selectedObj
+ 

@@ -1,0 +1,100 @@
+	plugin Helper roGen_Tangent
+	name:"RoadTangent"
+	classID:#(0x7fcacacd, 0x6c3d781b) --genClassID()
+	category:"Standard"
+	extends:Dummy
+	--replaceUI:true 
+	--version:1
+	--invisible:true
+	(
+		local meshObj
+		parameters pblock rollout:params (
+			
+			linked_to type:#string default:"None"
+			_pos type:#point3 default:[0, 0, 0]
+		)
+		rollout params "Parameters" (
+			
+			group "About:"
+			(
+				label lbl1 "Road Tangent Helper" align:#left
+			)
+		)
+		fn createPoint pos:[0, 0, 0] size:10 = (
+
+			local sps = SplineShape wirecolor:green
+			addNewSpline sps
+			addKnot sps 1 #corner #line [-size/2, 0, 0]
+			addKnot sps 1 #corner #line [size/2, 0, 0]
+			addNewSpline sps
+			addKnot sps 2 #corner #line [0, -size/2, 0]
+			addKnot sps 2 #corner #line [0, size/2, 0]
+			addNewSpline sps
+			addKnot sps 3 #corner #line [0, 0, -size/2]
+			addKnot sps 3 #corner #line [0, 0, size/2]
+			sps.render_renderable = false
+			sps.render_displayRenderMesh = false
+			updateShape sps
+			sps.pos = pos
+			sps
+		)
+		fn init = (
+				
+		)
+		on getDisplayMesh do ( 
+			
+			if (meshObj == undefined) do (
+				
+				meshObj = createPoint pos:_pos
+			)
+			meshObj
+		)
+		on create do init()
+		tool create (
+			
+			local p1
+			on mousePoint click do (
+				
+				case click of  ( 
+					
+					1:  nodeTM.translation =  gridPoint ---worldPoint
+					2: #stop
+				)
+			)
+			on mousemove click do (
+				
+				_pos = gridPoint
+			)
+		)
+	)
+	
+	
+	
+	
+		parameters params ( 
+	parameters params( 
+		
+		roadSpline 		type:#maxObject
+		startPoint		type:#maxObject
+		endPoint		type:#maxObject
+		roadSpline 		type:#node
+		startPoint		type:#node
+		endPoint		type:#node
+		controlsStr		type:#string
+	)
+	on update do format "updated: %\n" this
+	on create do format "created: %\n" this
+	on clone orig do (
+	
+		format "cloned a:% b:%\n" this orig	
+	)
+	on deleted do (
+	
+		format "deleted:%\n" this
+	)
+	--on attachedToNode <nodeVar> do ...
+	--on detachedFromNode <node> do ...
+	/*when transform $Body changes do (
+	
+		print "moved"
+	)*/
