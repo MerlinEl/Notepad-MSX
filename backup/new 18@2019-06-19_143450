@@ -1,0 +1,9 @@
+--use static vector and rotating vector to derive a 3rd axis.
+finalVector= cross(staticVector,rotatingVector)
+--contruct a matrix 3
+-- rotating vector is in row2
+tm = matrix 3 staticVector rotatingVector finalVector centerOfRotatoin
+--rotate
+rotateX tm 90
+--extract the new vector
+rotatedVector = tm.row2

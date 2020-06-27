@@ -1,0 +1,690 @@
+-- Hangar 13
+-- https://hangar13games.com
+-- Copyright (c) 2017 Hangar13. All Rights Reserved
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+attributes 'P3D:~Hidden~ModelNode~'
+attribID:#(0x50ab1ffa, 0x88cfc188)
+(
+	Parameters pblock_export rollout:commonParams
+ 	(
+		p_AssetType 						Type:#string 																		default:::gP3D_AssetTypes[1]
+		
+		p_Size 								type:#float 		animatable:false 		ui:amount 						default:::gP3D_NodeDefaultSize
+		
+		p_OutPath 							type:#string 		animatable:false 		ui:finalPath						default:""
+		
+		p_BakeGeometry 					type:#boolean 	animatable:false 		ui:isBaked		 				default:false
+		p_IsCrashObject 					type:#boolean 	animatable:false 		ui:isCrashObject 				default:false
+		p_IsVehicle 						type:#boolean 	animatable:false 		ui:isVehicle 					default:false
+		p_PreserveMorphOrder 			type:#boolean 	animatable:false 		ui:preserveMorphOrder 		default:false
+		p_ForceSkeleton 					type:#boolean 	animatable:false 		ui:forceSkeleton 				default:false
+		p_GenerateTerrainLODs			type:#boolean 	animatable:false 		ui:autogenTerLODs			default:true
+		
+		p_CollExportEnabled 				type:#boolean 	animatable:false 		ui:collExportEnabled 			default:false
+		p_OutPathColl 					type:#string 		animatable:false 		ui:outPathColl 					default:""
+		p_ReIndexTable 					type:#string 		animatable:false 		ui:reIndexTable				default:""
+		
+		p_ExportProfile 					type:#string 																		default:""		
+		p_ExportProfileIndex				type:#integer 																		default:1
+		p_LodNames						type:#string																		default:""
+		
+		model_source__path				type:#string																		default:""
+		
+		p_tempPath1						type:#string 		animatable:false 		ui:outPath						default:""
+		p_tempPath2						type:#string 		animatable:false 		ui:partName					default:""
+		p_tempPath3						type:#string 		animatable:false 		ui:stateName					default:""
+		
+		p_autoCollEnabled				type:#boolean		animatable:false		ui:collModelExportEnabled	default:false
+		p_AutoCollisionIndex 			type:#integer 									ui:listCollisionTypes			default:1
+	)
+	--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	rollout commonParams ("Pivo3D Model parameters") width: 160
+	(
+		groupBox 			groupProfile		 			"Export Profile" 					width:155 	height:15 	offset:[-10, 0]
+		dropDownList	listExportProfile			""										items:(::gExportProfiles.GetExportProfileNames())
+		
+		groupBox 			groupBase 					"Base Node Parameters" 		width:155 	height:15 	offset:[-10, 15]
+		label 				labelOutPaths 				"Output Path:" 																			align:#left 	across:2
+		button 				browseOutPath 			"..." 													height:15	offset:[ 27, 0]
+		editText 			outPath 						""   									width:173 					offset:[-13, 0]	readOnly:true 	labelOnTop:false
+		
+		label 				labelPartName 			"" 																			align:#left 	across:2
+		button 				browsePartName 			"..." 													height:15	offset:[ 27, 0]
+		editText 			partName					""   									width:173 					offset:[-13, 0]	readOnly:true 	labelOnTop:false
+		
+		label 				labelStateName 			"" 																			align:#left 	across:2
+		button 				browseStateName 		"..." 													height:15	offset:[ 27, 0]
+		editText 			stateName					""   									width:173 					offset:[-13, 0]	readOnly:true 	labelOnTop:false
+				
+		checkbox 			isCollision 					"Export as Static Collision" 		checked:false																				enabled:false
+		checkbox 			isBaked 						"Export as Baked geometry" 		checked:false																				enabled:false
+		
+		button 				copyPath 					"Copy Path" 						width:80	height:20	offset:[ 0, 0]		across:2
+		button 				pastePath 					"Paste Path" 						width:80	height:20							across:2
+
+		editText 			finalPath						"Final export path:" 				width:168 					offset:[-8, 0]		readOnly:true 	labelOnTop:true
+		
+		checkbox 			isCrashObject 				"Is Crash Object" 					checked:false																				enabled:false
+		checkbox 			isVehicle 					"Is Vehicle" 							checked:false																				enabled:false
+		
+		checkbox 			preserveMorphOrder 	"Preserve Morph Order" 			checked:false
+		checkbox 			forceSkeleton 				"Force To Create Skeleton" 		checked:false
+		
+		checkbox 			autogenTerLODs 			"Autogenerate LODs on Terrain" 	checked:true																				enabled:false
+		
+		
+		groupBox 			groupCollisions 			"Generated Collisions" 			width:155 	height:15 	offset:[-10, 15]
+		checkBox 			collExportEnabled 		"Enable" 								checked:false																				enabled:false
+		label 				labelOutPathColl 			"Collision file name:"				 														align:#left 								enabled:false
+		editText 			outPathColl 				""  									width:173					offset:[-13, 0]	readOnly:true	labelOnTop:false	enabled:false
+		label 				labelReIndexTable 		"Material re-index table:" 																align:#left 		across:2 			enabled:false
+		button 				browseReIndexTable 	"..." 													height:15	offset:[ 27, 0]  												enabled:false
+		editText 			reIndexTable 				""  									width:173					offset:[-13, 0]	readOnly:true	labelOnTop:false	enabled:false
+		
+		groupBox 			groupModelCollisions		"Auto Collisions" 					width:155 	height:15 	offset:[-10, 15]
+		checkBox 			collModelExportEnabled "Enable" 								checked:false																					enabled:false
+		dropDownList	listCollisionTypes			""										items:#("Static Collision","Box Collision","Convex Collision")						enabled:false
+		
+		groupBox 			groupAdditional 			"Additional Parameters" 		width:155 	height:15 	offset:[-10, 15]
+		spinner 			amount 						"Helper Size:" 						range:[0, 1e9, ::gP3D_NodeDefaultSize]
+		
+		--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		function UpdateFinalPath =
+		(
+			if commonParams == undefined then return false
+			local dependency	= (refs.dependents commonParams.owner)[1]
+			local obj				= (refs.dependentNodes dependency firstOnly:false baseObjectOnly:True)[1]
+			if (obj == undefined) then return false
+			local ui = obj.commonParams
+			
+			local finalExportPath = ""
+			try (
+				if (ui.outPath.text != "") then (
+					finalExportPath = ui.outPath.text
+					if (ui.partName.text != "") then (
+						finalExportPath += ui.partName.text
+					) else (
+						if (ui.partName.enabled) then (
+							finalExportPath = ""
+						)
+					)
+					if (ui.stateName.enabled) then (
+						if (ui.stateName.text != "") then (
+							finalExportPath += ui.stateName.text
+						) else (
+							finalExportPath = ""
+						)
+					)
+				)		
+				if (finalExportPath == "") or (finalExportPath == @"\") then finalExportPath = ::gP3D_InvalidPathString
+				ui.finalPath.text = finalExportPath as string
+			) catch (
+				return false
+			)
+			true
+		)
+		
+		--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		function UpdateUI obj:undefined resetValues:false =
+		(
+			function SetUIStates states resetValues:false =
+			(
+					isCollision.enabled = states[2]
+					if not isCollision.enabled  then (
+						isCollision.checked = states[1]
+					)
+					
+					isBaked.enabled = states[4]
+					if not isBaked.enabled then (
+						isBaked.checked = states[3]
+					)
+					
+					isCrashObject.checked = states[5]
+					isVehicle.checked = states[6]
+					
+					preserveMorphOrder.enabled = states[7]
+					
+					forceSkeleton.enabled = states[8]
+					if not forceSkeleton.enabled then (
+						forceSkeleton.checked = states[16]
+					)
+					
+					autogenTerLODs.enabled = states[10]
+					if not autogenTerLODs.enabled then (
+						autogenTerLODs.checked = states[9]
+					)
+					
+					collExportEnabled.enabled = states[11]
+					
+					labelOutPaths.text = states[12] as string
+					labelPartName.text = states[13] as string
+					labelStateName.text = states[15] as string
+					
+					labelPartName.enabled = (states[13] != "")
+					browsePartName.enabled = (states[13] != "")
+					partName.enabled = (states[13] != "")
+					
+					labelStateName.enabled = (states[15] != "")
+					browseStateName.enabled = (states[15] != "")
+					stateName.enabled = (states[15] != "")
+					
+					collModelExportEnabled.enabled = states[17]
+					
+					if resetValues then (
+						outPath.text = ""
+						partName.text = ""
+					)
+					
+					if (states[14] != "") then partName.text = states[14] as string
+			)
+			
+			if obj == undefined then (
+				local dependency	= (refs.dependents commonParams.owner)[1]
+				obj						= (refs.dependentNodes dependency firstOnly:false baseObjectOnly:True)[1]
+			)
+			local profileName = obj.commonParams.listExportProfile.text as string
+			
+			-- TODO: put this into profile configuration file
+			case profileName of (
+				"model": (
+					SetUIStates #(false, false, false, false, false, false, true, true, false, false, false, "Output path:", "", "", "", false,true) resetValues:resetValues
+				)
+				"terrain": (
+					SetUIStates #(false, true, true, false, false, false, false, false, false, true, true, "Pick World:", "Pick Environment:", "", "", false, false) resetValues:resetValues
+				)
+				"test_world": (
+					SetUIStates #(false, true, false, false, false, false, false, false, false, false, true, "Pick Test World:", "", "", "Pick Test World State", false, false) resetValues:resetValues
+				)
+				"location": (
+					SetUIStates #(false, true, false, true, false, false, false, false, false, false, true, "Pick World:", "Pick Location:", "", "Pick Location State:", false, false) resetValues:resetValues
+				)
+				"global": (
+					SetUIStates #(false, true, false, false, false, false, false, false, false, false, true, "Pick World:", "", @"global\", "", false, false) resetValues:resetValues
+				)
+				"crashobject":(
+					SetUIStates #(false, false, false, false, true, false, true, false, false, false, false, "Output path:", "", "", "", true, false) resetValues:resetValues
+--					obj.commonParams.GenCollisionState false
+				)
+				"car":(
+					SetUIStates #(false, false, false, false, false, true, true, false, false, false, false, "Output path:", "", "", "", true, false) resetValues:resetValues
+--					obj.commonParams.GenCollisionState false
+				)
+				"boat":(
+					SetUIStates #(false, false, false, false, false, true, true, false, false, false, false, "Output path:", "", "", "", true, false) resetValues:resetValues
+--					obj.commonParams.GenCollisionState false
+				)
+			)
+			obj.commonParams.GenAutoCollisionState ((collModelExportEnabled.checked) and (collModelExportEnabled.enabled))	
+			obj.commonParams.GenCollisionState ((collExportEnabled.checked) and (collExportEnabled.enabled))					
+			UpdateFinalPath()
+		)
+		
+		--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		function SetProfileByIndex index resetValues:false =
+		(
+			
+			if superclassof index != Number then return false
+			local dependency	= (refs.dependents commonParams.owner)[1] 
+			local obj				= (refs.dependentNodes dependency firstOnly:false baseObjectOnly:True)[1]
+			
+			obj.p_ExportProfileIndex = index
+			local newEC = ::gExportProfiles.GetProfileByIndex (obj.p_ExportProfileIndex)
+			if newEC == undefined then (
+				::P3DLogM("Invalid profile selected. Please contact tech art. Obj Name: " + obj.name as string + " Profile Index: " + index as string) level:3
+				return false
+			)
+			local thisEC = undefined
+			if isProperty obj "P3D__Hidden_ExportConfiguration" then (
+				thisEC = obj.P3D__Hidden_ExportConfiguration
+				::gCAInfo.CopyCAProperties newEC thisEC
+				obj.p_ExportProfile = thisEC.EC_name
+			) else (
+				::P3DLogM("Obsolete Model Node detected. Please delete and recreate this Model Node: " + obj.name as string) level:3
+				return false
+			)
+			obj.commonParams.listExportProfile.selection = obj.p_ExportProfileIndex
+			obj.p_AssetType = obj.commonParams.listExportProfile.text as string
+
+			UpdateUI obj:obj resetValues:resetValues
+			true
+		)
+		
+		--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		-- used to copy/paste final path instead of browsing it manualy.
+		-- TODO: this code is ugly. it needs to be modified so it worsk on the same rules as UpdateFinalPath and UpdateUI functios and Browse Dialogs rules.. Sometime...
+		function SetFinalPath newPath quiet:true =
+		(
+			function ErrorMsg msg quiet:true = 
+			(
+				local message = "Invalid input export path: " + msg as string
+				if quiet then (
+					::P3DLogL (message) level:3
+				) else (
+					::P3DLogM (message) level:3
+				)
+			)
+			
+			if commonParams == undefined then return false
+				
+			local dependency	= (refs.dependents commonParams.owner)[1]
+			local obj				= (refs.dependentNodes dependency firstOnly:false baseObjectOnly:True)[1]
+			if (obj == undefined) then return false
+			local ui 					= obj.commonParams
+			local profileName 	= ui.listExportProfile.text as string
+			
+			local relativePath = ::P3D_GetRelativeBranchPath newPath	::g_P3D_DataPath
+			if relativePath == "" then (
+				relativePath = newPath
+			)
+			local fullPath1 = ::ConnectPaths ::g_P3D_DataPath relativePath
+			local fullPath2 = ::ConnectPaths ::g_P3D_CommonDataPath relativePath
+			
+			if (not doesFileExist fullPath1) and (not doesFileExist fullPath2) then (
+				ErrorMsg fullPath1
+				ErrorMsg fullPath2
+				return false
+			)
+			
+			local filtered = FilterString relativePath @"\"
+			case filtered[1] of
+			(
+				"models": (
+					if (profileName != "model") and (profileName != "crashobject") and (profileName != "car") and  (profileName != "boat") then SetProfileByIndex 1 resetValues:true
+					ui.outPath.text = relativePath as string
+				)
+				"worlds": (
+					if filtered.count < 3 then (
+						ErrorMsg relativePath
+						return false
+					)
+					if matchpattern filtered[2] pattern:@"test*" then (
+						if matchpattern filtered[3] pattern:@"bookmarks" then (
+							ErrorMsg relativePath
+							return false
+						)
+						if filtered.count == 3 then (
+							SetProfileByIndex 2 resetValues:true
+							ui.outPath.text = filtered[1] + @"\" + filtered[2] + @"\"
+							ui.partName.text = ""
+							ui.stateName.text = filtered[3] + @"\"
+						) else (
+							ErrorMsg relativePath
+							return false		
+						)
+					) else (
+						if matchpattern filtered[3] pattern:@"environment*" then (
+							if filtered.count == 3 then (
+								SetProfileByIndex 3 resetValues:true
+								ui.outPath.text = filtered[1] + @"\" + filtered[2] + @"\"
+								ui.partName.text = filtered[3] + @"\"	
+								ui.stateName.text = ""
+							) else (
+								ErrorMsg relativePath
+								return false		
+							)
+						) else (
+							if matchpattern filtered[3] pattern:@"locations" then (
+								if filtered.count == 5 then (
+									SetProfileByIndex 4 resetValues:true
+									ui.outPath.text = filtered[1] + @"\" + filtered[2] + @"\"
+									ui.partName.text = filtered[3] + @"\" + filtered[4] + @"\"
+									ui.stateName.text = filtered[5] + @"\"
+								) else (
+									ErrorMsg relativePath
+									return false
+								)								
+							) else (
+								if matchpattern filtered[3] pattern:@"global" then (
+									if filtered.count == 3 then (
+										SetProfileByIndex 5 resetValues:true
+										ui.outPath.text = filtered[1] + @"\" + filtered[2] + @"\"
+										ui.partName.text = filtered[3] + @"\"	
+										ui.stateName.text = ""
+									) else (
+										ErrorMsg relativePath
+										return false		
+									)
+								) else (
+									ErrorMsg relativePath
+									return false									
+								)
+							)
+						)
+					)
+				)
+				default: (
+					ErrorMsg relativePath
+					return false
+				)
+			)
+			
+			UpdateFinalPath()
+			true
+		)		
+		--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		function GenAutoCollisionState visible =
+		(
+			if(visible == false) then
+			(
+				collModelExportEnabled.checked = false
+				listCollisionTypes.enabled = false
+			)
+			else
+			(
+				listCollisionTypes.enabled = true
+			)
+		)
+		--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		function GenCollisionState visible =
+		(
+
+			labelOutPathColl.enabled = visible
+			outPathColl.enabled = visible
+			labelReIndexTable.enabled = visible
+			browseReIndexTable.enabled = visible
+			reIndexTable.enabled = visible
+		)
+		
+		--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		on commonParams open do(
+			listExportProfile.selection = p_ExportProfileIndex
+			UpdateUI()
+		)
+		
+		--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		function GetBrowseDialogConfig =
+		(
+			-- TODO: put this into profile configuration file
+			local result = ::sBrowseDialogConfig()
+			
+			local dependency	= (refs.dependents commonParams.owner)[1] 
+			local obj				= (refs.dependentNodes dependency firstOnly:false baseObjectOnly:True)[1]			
+			local profileName 	= obj.commonParams.listExportProfile.text as string
+
+			result.dialogText = "Select export path"
+			result.fullTree = false
+			result.showFiles = false
+			result.initDir = outPath.text
+			case profileName of (
+				"model": (
+					result.fullTree = true
+					result.rootDir = ::g_P3D_DataPath + @"models\"
+					result.regexFilter = ""
+					)
+				"crashobject": (
+					result.fullTree = true
+					result.rootDir = ::g_P3D_DataPath + @"models\"
+					result.regexFilter = ""
+					)
+				"car": (
+					result.fullTree = true
+					result.rootDir = ::g_P3D_DataPath + @"models\vehicles\"
+					result.regexFilter = @"^(?!boats).*$"
+					)					
+				"boat": (
+					result.fullTree = true
+					result.rootDir = ::g_P3D_DataPath + @"models\vehicles\"
+					result.regexFilter = @"^(boats).*$"
+					)					
+				"terrain": (
+					result.rootDir = ::g_P3D_DataPath + @"worlds\"
+					result.regexFilter = @"^(?!test)(?!_templates).*$"
+				)
+				"test_world": (
+					result.rootDir = ::g_P3D_DataPath + @"worlds\"
+					result.regexFilter = @"^(test).*$"
+				)
+				"location": (
+					result.rootDir = ::g_P3D_DataPath + @"worlds\"
+					result.regexFilter = @"^(?!test)(?!_templates).*$"
+				)
+				"global": (
+					result.rootDir = ::g_P3D_DataPath + @"worlds\"
+					result.regexFilter = @"^(?!test)(?!_templates).*$"
+				)					
+			)
+			
+			result
+		)
+
+		--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		function GetBrowseDialogConfig_Part worldPath =
+		(
+			-- TODO: put this into profile configuration file
+			local result = ::sBrowseDialogConfig()
+			
+			local dependency	= (refs.dependents commonParams.owner)[1]
+			local obj				= (refs.dependentNodes dependency firstOnly:false baseObjectOnly:True)[1]
+			local profileName 	= obj.commonParams.listExportProfile.text as string
+			
+			result.dialogText = "Select World"
+			result.fullTree = false
+			result.showFiles = false
+			result.initDir = ""
+			case profileName of (
+				"terrain": (
+					result.rootDir = worldPath
+					result.regexFilter = @"^(environment).*$"
+				)
+				"location": (
+					result.rootDir = worldpath + @"locations\"
+					result.regexFilter = ""
+				)
+			)			
+			result
+		)		
+		
+		--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		function GetBrowseDialogConfig_State worldPath =
+		(
+			-- TODO: put this into profile configuration file
+			local result = ::sBrowseDialogConfig()
+			
+			local dependency	= (refs.dependents commonParams.owner)[1]
+			local obj				= (refs.dependentNodes dependency firstOnly:false baseObjectOnly:True)[1]
+			local profileName 	= obj.commonParams.listExportProfile.text as string
+			
+			result.fullTree = false
+			result.showFiles = false
+			result.initDir = ""
+			case profileName of (
+				"location": (
+					result.dialogText = "Select Location State"
+					result.rootDir = worldpath
+					result.regexFilter = ""
+				)
+				"test_world": (
+					result.dialogText = "Select Test World State"
+					result.rootDir = worldpath
+					result.regexFilter =  @"^(?!bookmarks).*$"
+				)
+			)
+			result
+		)			
+		
+		--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		function GetBrowseDialogConfig_ReIndexTable worldPath =
+		(
+			local result = ::sBrowseDialogConfig()
+			result.dialogText = "Select Collision Re-Index table"
+			result.rootDir = worldpath
+			result.regexFilter =  @"(coll.*|.*_table)\.xml$"
+			result.fullTree = false
+			result.showFiles = true
+			result.initDir = ""
+			result
+		)
+		
+		--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		on browseOutPath pressed do (
+			::gP3D_TempFloaterDialogConfig = GetBrowseDialogConfig()
+			::P3D_CreateTempFloaterDialog()
+			local browsedPath = ::gP3D_TempFloaterDialogBrowsedPath
+			if browsedPath != undefined then (
+				outPath.text = (::P3D_GetRelativeBranchPath browsedPath ::g_P3D_DataPath) as string
+				
+				local partPath = ::ConnectPaths browsedPath partName.text
+				if (not doesfileexist partPath) and (partName.text != "global") then (
+					partName.text = ""
+				)				
+				if (not doesfileexist (::ConnectPaths partPath stateName.text lastFolder:true)) then (
+					stateName.text = ""
+				)
+
+				UpdateFinalPath()
+			)
+			::gP3D_TempFloaterDialogBrowsedPath = undefined
+			::gP3D_TempFloaterDialogConfig = undefined			
+		)		
+		
+		--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		on browsePartName pressed do (
+			local rootPath = (::g_P3D_DataPath + outPath.text)
+			::gP3D_TempFloaterDialogConfig = GetBrowseDialogConfig_Part rootPath
+			::P3D_CreateTempFloaterDialog()
+			local browsedPath = ::gP3D_TempFloaterDialogBrowsedPath
+			if browsedPath != undefined then (
+				partName.text = (::P3D_GetRelativeBranchPath browsedPath rootPath) as string
+				
+				local statePath = ::ConnectPaths rootPath partName.text lastFolder:true
+				local statePath = ::ConnectPaths statePath stateName.text lastFolder:true
+				if (not doesfileexist statePath) then (
+					stateName.text = ""
+				)
+				
+				UpdateFinalPath()
+			)
+			::gP3D_TempFloaterDialogBrowsedPath = undefined
+			::gP3D_TempFloaterDialogConfig = undefined
+		)
+		
+		--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		on browseStateName pressed do (
+			local rootPath = (::g_P3D_DataPath + outPath.text + partName.text)
+			::gP3D_TempFloaterDialogConfig = GetBrowseDialogConfig_State rootPath
+			::P3D_CreateTempFloaterDialog()
+			local browsedPath = ::gP3D_TempFloaterDialogBrowsedPath
+			if browsedPath != undefined then (
+				stateName.text = (::P3D_GetRelativeBranchPath browsedPath rootPath) as string
+				UpdateFinalPath()
+			)
+			::gP3D_TempFloaterDialogBrowsedPath = undefined
+			::gP3D_TempFloaterDialogConfig = undefined
+		)		
+		--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		on collModelExportEnabled changed arg do (
+			GenAutoCollisionState arg
+		)
+		--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		on collExportEnabled changed arg do (
+			GenCollisionState arg
+		)
+		--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		on listCollisionTypes selected arg do (
+			p_AutoCollisionIndex = arg
+		)
+		--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		on isCollision changed arg do (
+			local dependency	= (refs.dependents commonParams.owner)[1]
+			local obj				= (refs.dependentNodes dependency firstOnly:false baseObjectOnly:True)[1]
+			
+			local objName = obj.name
+			
+			local filtered = filterstring objName "_"
+			local lastPart = filtered[filtered.count]
+			
+			if arg then (
+				if not (matchpattern lastPart pattern:"coll*") then (
+					obj.name += "_coll"
+				) else (
+					if lastPart != "coll" then (
+						local newName = ""
+						for index = 1 to filtered.count - 1 do newName += filtered[index] + "_"
+						newName += "coll"
+						obj.name = newName
+					)
+				)
+				collExportEnabled.enabled = false
+				collExportEnabled.checked = false
+			) else (
+				if lastPart == "coll" then (
+					local newName = ""
+					for index = 1 to filtered.count - 2 do newName += filtered[index] + "_"
+					newName += filtered[filtered.count - 1]
+					obj.name = newName
+				)
+				collExportEnabled.enabled = true
+			)
+		)
+		
+		--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		on listExportProfile selected arg do (
+			SetProfileByIndex arg resetValues:true
+		)
+		
+		--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		on browseReIndexTable pressed do (
+			local initPath = ::g_P3D_PluginConfiguration			
+			local rootPath = (::g_P3D_ResourceBranchPath)
+			::gP3D_TempFloaterDialogConfig = GetBrowseDialogConfig_ReIndexTable initPath
+			::P3D_CreateTempFloaterDialog()
+			local browsedPath = ::gP3D_TempFloaterDialogBrowsedPath
+			if browsedPath != undefined then (
+				reIndexTable.text = (::P3D_GetRelativeBranchPath browsedPath rootPath) as string
+			)			
+			::gP3D_TempFloaterDialogBrowsedPath = undefined
+			::gP3D_TempFloaterDialogConfig = undefined			
+		)
+		
+		--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		on copyPath pressed do (
+			if commonParams == undefined then return false				
+			local dependency	= (refs.dependents commonParams.owner)[1]
+			local obj				= (refs.dependentNodes dependency firstOnly:false baseObjectOnly:True)[1]
+			if (obj == undefined) then return false
+			SetClipboardtext finalPath.text as string
+			true
+		)
+		
+		--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		on pastePath pressed do (
+			if commonParams == undefined then return false				
+			local dependency	= (refs.dependents commonParams.owner)[1]
+			local obj				= (refs.dependentNodes dependency firstOnly:false baseObjectOnly:True)[1]
+			if (obj == undefined) then return false
+			SetFinalPath (GetClipboardText() as string) quiet:false
+		)
+		
+		--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		on amount changed arg do (
+			if (arg == 0) then amount.value = ::gP3D_NodeDefaultSize
+		)		
+	)
+	
+	--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	function UpdateProfile = 
+	(
+		try (
+			this.commonParams.SetProfileByIndex (this.p_ExportProfileIndex)
+			this.commonParams.UpdateFinalPath()
+			this.model_source__path = maxfilepath + maxfilename
+		) catch (
+			::P3DLog("Error in UpdateProfile() - " + getcurrentexception() as string) level:3
+		)
+	)
+	
+	--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	function GetGenerateCollisions =
+	(
+		(this.commonParams.collExportEnabled.enabled and this.commonParams.collExportEnabled.checked)
+	)
+	
+	--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	function SetPath newPath quiet:true =
+	(
+		local result = this.commonParams.SetFinalPath (::FixPath newPath) quiet:quiet
+		return result
+	)
+)

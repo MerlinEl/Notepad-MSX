@@ -1,0 +1,49 @@
+clearListener();
+try(destroydialog rFlash);catch()
+rollout rFlash "MZP/rs 64" width:540 height:600(
+	-------------------------------
+	dotNetControl web "System.Windows.Forms.WebBrowser" pos:[0,0] width:120 height:220 	dotNetControl exec "System.Windows.Forms.Textbox" pos:[0,0] visible:false --hidden textbox that will hold commands passed from javascript
+	-------------------------------
+	on rFlash open do( 
+		web.ScrollBarsEnabled = dotnetobject "System.Boolean" false;--no scrollbars!!
+		web.ObjectForScripting = exec;
+	)
+	---------check if the html document ("ObjectForScripting") has been changed---------------
+	on exec TextChanged e do( --once we get a command, execute it. Don't try this at home.
+		local elements = filterString (exec.text) "#";
+		
+		if (elements.count >= 2)then(--single element
+			local code  = elements[1] as string;
+			code = findAndReplace code "'" """;--just to be sure
+			
+			try(
+				execute code;
+				print("execute: "+code);
+			)catch(
+				format "could not execute:n% n" code;
+			);
+		)
+	)
+	-------------------------------
+	on rFlash resized size do(
+		web.size = dotnetobject "System.Drawing.Size" size[1] size[2];
+	)
+)
+--fromMaxScript
+CreateDialog rFlash 120 220 pos:[320,100] style:#(#style_titlebar,#style_resizing,#style_sysmenu,#style_toolwindow);
+
+
+
+<html>
+<head>
+<script>
+//maxscript functions
+function fromMaxScript(){
+	alert('received: '); 
+}
+function toMaxScript(codeString){
+	var time = new Date();
+	window.external.text=codeString+"#"+String(time.getTime());//add a unique timestamp at the end
+}
+</script>
+</head>...

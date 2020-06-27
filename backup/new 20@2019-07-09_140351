@@ -1,0 +1,459 @@
+#region Header
+; #INDEX# =======================================================================================================================
+; Title .........: WinSnap
+; AutoIt Version : 3.3.6.1
+; Language ......: English
+; Description ...: Functions for making windows have "snap to" edges
+; Author(s) .....: Beege
+; Remarks........:  This UDF registers windows msgs WM_MOVING, WM_ENTERSIZEMOVE, WS_WM_SIZING. If any of these msgs
+;     are registered in your script, your function must pass the msgs on to this UDF. Below are examples of the calls
+; you will need to add if this is the case:
+;
+; Func WM_ENTERSIZEMOVE($hWndGUI, $MsgID, $wParam, $lParam)
+; WS_WM_ENTERSIZEMOVE($hWndGUI, $MsgID, $wParam, $lParam)
+; ;USER CODE;
+; EndFunc   ;==>WM_SIZING;
+;
+; Func WM_MOVING($hWndGUI, $MsgID, $wParam, $lParam)
+; WS_WM_MOVING($hWndGUI, $MsgID, $wParam, $lParam)
+; ;USER CODE;
+; EndFunc   ;==>WM_SIZING;
+;
+; Func WM_SIZING($hWndGUI, $MsgID, $wParam, $lParam)
+; WS_WM_SIZING($hWndGUI, $MsgID, $wParam, $lParam)
+; ;USER CODE;
+; EndFunc   ;==>WM_SIZING;
+;
+; ===============================================================================================================================
+ 
+ 
+; #CURRENT# =====================================================================================================================
+; _WinSnap_Set
+; _WinSnap_SetStyle
+; ===============================================================================================================================
+ 
+#include-once
+#include <GUIConstantsEx.au3>
+#include <WindowsConstants.au3>
+#include <StructureConstants.au3>
+#include <WinAPI.au3>
+#endregion Header
+#region Global Varialbes
+;~ Opt('MustDeclareVars', 1)
+ 
+Global Enum $g_iHwnd, $g_iStyle
+Global $g_aSnapGUIs[1][2] = [[0, 0]]
+#cs
+$g_aSnapGUIs[$i][$g_iHwnd]  = Handle to window
+$g_aSnapGUIs[$i][$g_iStyle] = Style Flag
+#ce
+ 
+Global $g_iMouseDistancetoX, $g_iMouseDistancetoY
+Global $g_iDesktopHeight
+Global $g_bMovingStarted = False
+Global $g_iMonitorTotal
+ 
+Global Const $WS_WM_MOVING = 0x0216
+Global Const $WS_WM_ENTERSIZEMOVE = 0x0231
+ 
+GUIRegisterMsg($WS_WM_MOVING, "WS_WM_MOVING")
+GUIRegisterMsg($WS_WM_ENTERSIZEMOVE, 'WS_WM_ENTERSIZEMOVE')
+GUIRegisterMsg($WM_SIZING, 'WS_WM_SIZING')
+ 
+#endregion Global Varialbes
+ 
+#region Public functions
+; #FUNCTION# ====================================================================================================
+; Name...........: _WinSnap_Set
+; Description....: Sets window to have "snap to" edges
+; Syntax.........: _WinSnap_Set($hGUI)
+; Parameters.....: $hGUI - handle to window
+; Return values..: Success -  1
+; Failure -  0 and sets @error
+; Author.........: Beege
+; Remarks........: None
+; ===============================================================================================================
+Func _WinSnap_Set($hGUI)
+ 
+$g_aSnapGUIs[0][0] += 1
+ReDim $g_aSnapGUIs[$g_aSnapGUIs[0][0] + 1][2]
+$g_aSnapGUIs[$g_aSnapGUIs[0][0]][$g_iHwnd] = $hGUI
+$g_aSnapGUIs[$g_aSnapGUIs[0][0]][$g_iStyle] = 3
+ 
+Local $tRectMoving = DllStructCreate($tagRECT)
+_WinAPI_SystemParametersInfo(0x0030, 0, DllStructGetPtr($tRectMoving), 0);SPI_GETWORKAREA
+If @error Then Return SetError(1, 0, 0)
+$g_iDesktopHeight = DllStructGetData($tRectMoving, 'Bottom')
+ 
+$g_iMonitorTotal = _WinAPI_GetSystemMetrics(80);SM_CMONITORS
+If @error Then Return SetError(1, 0, 0)
+ 
+Return 1
+ 
+EndFunc   ;==>_WinSnap_Set
+ 
+; #FUNCTION# ====================================================================================================
+; Name...........: _WinSnap_SetStyle
+; Description....: Sets what the window will snap to. Desktop edges or Window edges
+; Syntax.........: _WinSnap_SetStyle($hGUI, $iFlag)
+; Parameters.....: $hGUI - Handle to window to set style
+; $iFlag - Style Value:
+; | 0 = No Snap at all
+; | 1 = Snap to Desktop Edges
+; | 2 = Snap to Other Autoit Windows
+; | 3 = Snap to all (Defualt)
+; Return values..: Success - Returns the value of the previous setting
+; Failure - 0 and set @error to 1
+; Author.........: Beege
+; ===============================================================================================================
+Func _WinSnap_SetStyle($hGUI, $iFlag)
+ 
+Local $iIndex = _GetIndex($hGUI)
+If Not $iIndex Then Return SetError(1, 0, 0)
+ 
+Local $iLast = $g_aSnapGUIs[$iIndex][$g_iStyle]
+$g_aSnapGUIs[$iIndex][$g_iStyle] = $iFlag
+ 
+Return $iLast
+ 
+EndFunc   ;==>_WinSnap_SetStyle
+ 
+#endregion Public functions
+ 
+#region internel functions
+; #FUNCTION# ====================================================================================================
+; Name...........: _GetIndex
+; Description....: returns array index for handle
+; Syntax.........: _GetIndex($hGUI)
+; Parameters.....: $hGUI - handle to window
+; Return values..: Success - array index for gui handle
+; Failure - 0
+; Author.........: Beege
+; ===============================================================================================================
+Func _GetIndex($hGUI)
+For $i = 1 To $g_aSnapGUIs[0][0]
+If $hGUI = $g_aSnapGUIs[$i][$g_iHwnd] Then Return $i
+Next
+Return 0
+EndFunc   ;==>_GetIndex
+ 
+; #FUNCTION# ====================================================================================================
+; Name...........: WS_WM_ENTERSIZEMOVE
+; Description....:  Called when window begins to move.
+; Syntax.........: WS_WM_ENTERSIZEMOVE($hWndGUI, $MsgID, $wParam, $lParam)
+; Return values..: None
+; Author.........: Beege
+; ===============================================================================================================
+Func WS_WM_ENTERSIZEMOVE($hWndGUI, $MsgID, $wParam, $lParam)
+#forceref $hWndGUI, $MsgID, $wParam, $lParam
+ 
+Local $pGUI1 = WinGetPos($hWndGUI)
+Local $aMousePos = MouseGetPos()
+ 
+$g_bMovingStarted = False
+$g_iMouseDistancetoX = $aMousePos[0] - $pGUI1[0]
+$g_iMouseDistancetoY = $pGUI1[1] - $aMousePos[1]
+ 
+EndFunc   ;==>WS_WM_ENTERSIZEMOVE
+ 
+; #FUNCTION# ====================================================================================================
+; Name...........: WS_WM_MOVING
+; Description....: Called when a window is being moved
+; Syntax.........: WS_WM_MOVING($hWndGUI, $MsgID, $wParam, $lParam)
+; Return values..: None
+; Author.........: Beege
+; ===============================================================================================================
+Func WS_WM_MOVING($hWndGUI, $MsgID, $wParam, $lParam)
+#forceref $hWndGUI, $MsgID, $wParam, $lParam
+ 
+Static $iStartW, $iStartH
+ 
+Local $iIndex = _GetIndex($hWndGUI)
+If Not $iIndex Then Return $GUI_RUNDEFMSG
+ 
+Local $tRectMoving = DllStructCreate($tagRECT, $lParam)
+ 
+If Not $g_bMovingStarted Then
+$g_bMovingStarted = True
+$iStartW = DllStructGetData($tRectMoving, 'Right') - DllStructGetData($tRectMoving, 'Left')
+$iStartH = DllStructGetData($tRectMoving, 'Bottom') - DllStructGetData($tRectMoving, 'Top')
+EndIf
+ 
+;If window is snaped we need to monitor how much the mouse has moved
+;from is original drag point position on the title bar.
+Local $aMousePos = MouseGetPos()
+Local $iChangeinX = Abs($aMousePos[0] - (DllStructGetData($tRectMoving, 'Left') + $g_iMouseDistancetoX))
+Local $iChangeinY = Abs((DllStructGetData($tRectMoving, 'Top') - $aMousePos[1]) - $g_iMouseDistancetoY)
+ 
+Local $iTopMoving = DllStructGetData($tRectMoving, 'Top'), $iBottomMoving = DllStructGetData($tRectMoving, 'Bottom')
+Local $iLeftMoving = DllStructGetData($tRectMoving, 'Left'), $iRightMoving = DllStructGetData($tRectMoving, 'Right')
+ 
+#region Check if near desktop edges
+;Check if style includes snaping to desktop edges
+If BitAND($g_aSnapGUIs[$iIndex][$g_iStyle], 1) Then
+For $i = 1 To $g_iMonitorTotal
+If _IsClose($iRightMoving, (@DesktopWidth * $i)) Then
+DllStructSetData($tRectMoving, 'Right', (@DesktopWidth * $i))
+DllStructSetData($tRectMoving, 'Left', DllStructGetData($tRectMoving, 'Right') - $iStartW)
+EndIf
+Next
+ 
+For $i = 0 To $g_iMonitorTotal - 1
+If _IsClose($iLeftMoving, (@DesktopWidth * $i)) Then
+DllStructSetData($tRectMoving, 'Left', (@DesktopWidth * $i))
+DllStructSetData($tRectMoving, 'Right', DllStructGetData($tRectMoving, 'Left') + $iStartW)
+EndIf
+Next
+ 
+If _IsClose($iTopMoving, 0) Then
+DllStructSetData($tRectMoving, 'Top', 0)
+DllStructSetData($tRectMoving, 'Bottom', DllStructGetData($tRectMoving, 'Top') + $iStartH)
+EndIf
+ 
+If _IsClose($iBottomMoving, $g_iDesktopHeight) Then
+DllStructSetData($tRectMoving, 'Bottom', $g_iDesktopHeight)
+DllStructSetData($tRectMoving, 'Top', DllStructGetData($tRectMoving, 'Bottom') - $iStartH)
+EndIf
+ 
+If _IsClose($iBottomMoving, @DesktopHeight) Then
+DllStructSetData($tRectMoving, 'Bottom', @DesktopHeight)
+DllStructSetData($tRectMoving, 'Top', DllStructGetData($tRectMoving, 'Bottom') - $iStartH)
+EndIf
+ 
+;Here we check if the mouse has moved from original drag point. if it has we unsnap the window
+If $iChangeinX > 20 Then
+DllStructSetData($tRectMoving, 'Left', $aMousePos[0] - $g_iMouseDistancetoX)
+DllStructSetData($tRectMoving, 'Right', DllStructGetData($tRectMoving, 'Left') + $iStartW)
+EndIf
+If $iChangeinY > 15 Then
+DllStructSetData($tRectMoving, 'Top', $aMousePos[1] + $g_iMouseDistancetoY)
+DllStructSetData($tRectMoving, 'Bottom', DllStructGetData($tRectMoving, 'Top') + $iStartH)
+EndIf
+ 
+EndIf
+#endregion Check if near desktop edges
+ 
+#region Check if window in near other Autoit Windows
+Local $aWinlist = WinList()
+;Check if style of window includes other Autoit Windows
+If BitAND($g_aSnapGUIs[$iIndex][$g_iStyle], 2) Then
+ 
+For $i = 1 To $aWinlist[0][0]
+ 
+If $aWinlist[$i][0] = '' Or $aWinlist[$i][1] = $hWndGUI Or Not _IsVisible($aWinlist[$i][1]) Then ContinueLoop
+ 
+Local $tRectNonMoving = _WinAPI_GetWindowRect($aWinlist[$i][1])
+Local $iTopNonMoving = DllStructGetData($tRectNonMoving, 'Top'), $iBottomNonMoving = DllStructGetData($tRectNonMoving, 'Bottom')
+Local $iLeftNonMoving = DllStructGetData($tRectNonMoving, 'Left'), $iRightNonMoving = DllStructGetData($tRectNonMoving, 'Right')
+ 
+If $iTopMoving <= ($iBottomNonMoving + 5) And ($iBottomMoving + 5) >= $iTopNonMoving Then
+;Gui1Right to Gui2Right
+If _IsClose(DllStructGetData($tRectMoving, 'Right'), $iRightNonMoving) Then
+DllStructSetData($tRectMoving, 'Right', $iRightNonMoving)
+DllStructSetData($tRectMoving, 'Left', DllStructGetData($tRectMoving, 'Right') - $iStartW)
+EndIf
+ 
+;Gui1Left to Gui2left
+If _IsClose(DllStructGetData($tRectMoving, 'Left'), $iLeftNonMoving) Then
+DllStructSetData($tRectMoving, 'Left', $iLeftNonMoving)
+DllStructSetData($tRectMoving, 'Right', DllStructGetData($tRectMoving, 'Left') + $iStartW)
+EndIf
+ 
+;Gui1Left to Gui2Right
+If _IsClose(DllStructGetData($tRectMoving, 'Left'), $iRightNonMoving) Then
+DllStructSetData($tRectMoving, 'Left', $iRightNonMoving)
+DllStructSetData($tRectMoving, 'Right', DllStructGetData($tRectMoving, 'Left') + $iStartW)
+EndIf
+ 
+;Gui1Right to Gui2Left
+If _IsClose(DllStructGetData($tRectMoving, 'Right'), $iLeftNonMoving) Then
+DllStructSetData($tRectMoving, 'Right', $iLeftNonMoving)
+DllStructSetData($tRectMoving, 'Left', DllStructGetData($tRectMoving, 'Right') - $iStartW)
+EndIf
+EndIf
+ 
+If ($iLeftMoving <= $iRightNonMoving + 5) And ($iRightMoving + 5 >= $iLeftNonMoving) Then
+;gui1top to gui2top
+If _IsClose(DllStructGetData($tRectMoving, 'Top'), $iTopNonMoving) Then
+DllStructSetData($tRectMoving, 'Top', $iTopNonMoving)
+DllStructSetData($tRectMoving, 'Bottom', DllStructGetData($tRectMoving, 'Top') + $iStartH)
+EndIf
+ 
+;~  gui1top to gui2bottom
+If _IsClose(DllStructGetData($tRectMoving, 'Top'), $iBottomNonMoving) Then
+DllStructSetData($tRectMoving, 'Top', $iBottomNonMoving)
+DllStructSetData($tRectMoving, 'Bottom', DllStructGetData($tRectMoving, 'Top') + $iStartH)
+EndIf
+ 
+;gui1bottom to gui2bottom
+If _IsClose(DllStructGetData($tRectMoving, 'Bottom'), $iBottomNonMoving) Then
+DllStructSetData($tRectMoving, 'Bottom', $iBottomNonMoving)
+DllStructSetData($tRectMoving, 'Top', DllStructGetData($tRectMoving, 'Bottom') - $iStartH)
+EndIf
+ 
+;gui1bottom to gui2top
+If _IsClose(DllStructGetData($tRectMoving, 'Bottom'), $iTopNonMoving) Then
+DllStructSetData($tRectMoving, 'Bottom', $iTopNonMoving)
+DllStructSetData($tRectMoving, 'Top', DllStructGetData($tRectMoving, 'Bottom') - $iStartH)
+EndIf
+EndIf
+ 
+;Here we check if the mouse has moved from original drag point. if it has we unsnap the window
+If $iChangeinX > 20 Then
+DllStructSetData($tRectMoving, 'Left', $aMousePos[0] - $g_iMouseDistancetoX)
+DllStructSetData($tRectMoving, 'Right', DllStructGetData($tRectMoving, 'Left') + $iStartW)
+EndIf
+ 
+If $iChangeinY > 15 Then
+DllStructSetData($tRectMoving, 'Top', $aMousePos[1] + $g_iMouseDistancetoY)
+DllStructSetData($tRectMoving, 'Bottom', DllStructGetData($tRectMoving, 'Top') + $iStartH)
+EndIf
+Next
+EndIf
+#endregion Check if window in near other Autoit Windows
+ 
+Return $GUI_RUNDEFMSG
+ 
+EndFunc   ;==>WS_WM_MOVING
+ 
+; #FUNCTION# ====================================================================================================
+; Name...........: WS_WM_SIZING
+; Description....: Called when a window is being sized
+; Syntax.........: WS_WM_SIZING($hWndGUI, $MsgID, $wParam, $lParam)
+; Return values..: None
+; Author.........: Beege
+; ===============================================================================================================
+Func WS_WM_SIZING($hWndGUI, $MsgID, $wParam, $lParam)
+#forceref $hWndGUI, $MsgID, $wParam, $lParam
+ 
+If Not _GetIndex($hWndGUI) Then Return $GUI_RUNDEFMSG
+ 
+Local $tRectMoving = DllStructCreate($tagRECT, $lParam)
+Local $iLeftMoving = DllStructGetData($tRectMoving, 'Left'), $iRightMoving = DllStructGetData($tRectMoving, 'Right')
+Local $iTopMoving = DllStructGetData($tRectMoving, 'Top'), $iBottomMoving = DllStructGetData($tRectMoving, 'Bottom')
+ 
+#region check if resizing near desktop edge
+Switch $wParam
+Case 6; bottom edge
+If _IsClose($iBottomMoving, $g_iDesktopHeight) Then DllStructSetData($tRectMoving, 'Bottom', $g_iDesktopHeight)
+Case 7; bottom Left corner
+If _IsClose($iBottomMoving, $g_iDesktopHeight) Then DllStructSetData($tRectMoving, 'Bottom', $g_iDesktopHeight)
+If _IsClose($iLeftMoving, @DesktopWidth) Then DllStructSetData($tRectMoving, 'Left', @DesktopWidth)
+If _IsClose($iLeftMoving, 0) Then DllStructSetData($tRectMoving, 'Left', 0)
+Case 1; left
+If _IsClose($iLeftMoving, @DesktopWidth) Then DllStructSetData($tRectMoving, 'Left', @DesktopWidth)
+If _IsClose($iLeftMoving, 0) Then DllStructSetData($tRectMoving, 'Left', 0)
+Case 2; right
+If _IsClose($iRightMoving, @DesktopWidth) Then
+DllStructSetData($tRectMoving, 'Right', @DesktopWidth)
+ElseIf _IsClose($iRightMoving, @DesktopWidth * 2) Then
+DllStructSetData($tRectMoving, 'Right', (@DesktopWidth * 2))
+EndIf
+Case 8; bottom right
+If _IsClose($iBottomMoving, $g_iDesktopHeight) Then DllStructSetData($tRectMoving, 'Bottom', $g_iDesktopHeight)
+If _IsClose($iRightMoving, @DesktopWidth) Then
+DllStructSetData($tRectMoving, 'Right', @DesktopWidth)
+ElseIf _IsClose($iRightMoving, @DesktopWidth * 2) Then
+DllStructSetData($tRectMoving, 'Right', (@DesktopWidth * 2))
+EndIf
+Case 3; top
+If _IsClose($iTopMoving, 0) Then DllStructSetData($tRectMoving, 'Top', 0)
+Case 4; top left
+If _IsClose($iTopMoving, 0) Then DllStructSetData($tRectMoving, 'Top', 0)
+If _IsClose($iLeftMoving, @DesktopWidth) Then DllStructSetData($tRectMoving, 'Left', @DesktopWidth)
+Case 5; top right
+If _IsClose($iRightMoving, @DesktopWidth) Then
+DllStructSetData($tRectMoving, 'Right', @DesktopWidth)
+ElseIf _IsClose($iRightMoving, @DesktopWidth * 2) Then
+DllStructSetData($tRectMoving, 'Right', (@DesktopWidth * 2))
+EndIf
+If _IsClose($iTopMoving, 0) Then DllStructSetData($tRectMoving, 'Top', 0)
+EndSwitch
+#endregion check if resizing near desktop edge
+ 
+#region Check if resizing near other windows
+Local $aWinlist = WinList()
+ 
+For $i = 1 To $aWinlist[0][0]
+ 
+If $aWinlist[$i][0] = '' Or $aWinlist[$i][1] = $hWndGUI Or Not _IsVisible($aWinlist[$i][1]) Then ContinueLoop
+ 
+Local $tRectNonMoving = _WinAPI_GetWindowRect($aWinlist[$i][1])
+Local $iLeftNonMoving = DllStructGetData($tRectNonMoving, 'Left'), $iRightNonMoving = DllStructGetData($tRectNonMoving, 'Right')
+Local $iTopNonMoving = DllStructGetData($tRectNonMoving, 'Top'), $iBottomNonMoving = DllStructGetData($tRectNonMoving, 'Bottom')
+ 
+Switch $wParam
+Case 6; bottom edge
+If ($iLeftMoving <= $iRightNonMoving + 5) And ($iRightMoving + 5 >= $iLeftNonMoving) Then
+If _IsClose(DllStructGetData($tRectMoving, 'Bottom'), $iBottomNonMoving) Then DllStructSetData($tRectMoving, 'Bottom', $iBottomNonMoving)
+If _IsClose(DllStructGetData($tRectMoving, 'Bottom'), $iTopNonMoving) Then DllStructSetData($tRectMoving, 'Bottom', $iTopNonMoving)
+EndIf
+Case 7; bottom Left corner
+If ($iLeftMoving <= $iRightNonMoving + 5) And ($iRightMoving + 5 >= $iLeftNonMoving) Then
+If _IsClose(DllStructGetData($tRectMoving, 'Left'), $iLeftNonMoving) Then DllStructSetData($tRectMoving, 'Left', $iLeftNonMoving)
+If _IsClose(DllStructGetData($tRectMoving, 'Left'), $iRightNonMoving) Then DllStructSetData($tRectMoving, 'Left', $iRightNonMoving)
+If _IsClose(DllStructGetData($tRectMoving, 'Bottom'), $iBottomNonMoving) Then DllStructSetData($tRectMoving, 'Bottom', $iBottomNonMoving)
+If _IsClose(DllStructGetData($tRectMoving, 'Bottom'), $iTopNonMoving) Then DllStructSetData($tRectMoving, 'Bottom', $iTopNonMoving)
+EndIf
+Case 1; left
+If $iTopMoving <= ($iBottomNonMoving + 5) And ($iBottomMoving + 5) >= $iTopNonMoving Then
+If _IsClose(DllStructGetData($tRectMoving, 'Left'), $iLeftNonMoving) Then DllStructSetData($tRectMoving, 'Left', $iLeftNonMoving)
+If _IsClose(DllStructGetData($tRectMoving, 'Left'), $iRightNonMoving) Then DllStructSetData($tRectMoving, 'Left', $iRightNonMoving)
+EndIf
+Case 2; right
+If $iTopMoving <= ($iBottomNonMoving + 5) And ($iBottomMoving + 5) >= $iTopNonMoving Then
+If _IsClose(DllStructGetData($tRectMoving, 'Right'), $iRightNonMoving) Then DllStructSetData($tRectMoving, 'Right', $iRightNonMoving)
+If _IsClose(DllStructGetData($tRectMoving, 'Right'), $iLeftNonMoving) Then DllStructSetData($tRectMoving, 'Right', $iLeftNonMoving)
+EndIf
+Case 8; bottom right
+If ($iLeftMoving <= $iRightNonMoving + 5) And ($iRightMoving + 5 >= $iLeftNonMoving) Then
+If _IsClose(DllStructGetData($tRectMoving, 'Bottom'), $iBottomNonMoving) Then DllStructSetData($tRectMoving, 'Bottom', $iBottomNonMoving)
+If _IsClose(DllStructGetData($tRectMoving, 'Bottom'), $iTopNonMoving) Then DllStructSetData($tRectMoving, 'Bottom', $iTopNonMoving)
+If _IsClose(DllStructGetData($tRectMoving, 'Right'), $iRightNonMoving) Then DllStructSetData($tRectMoving, 'Right', $iRightNonMoving)
+If _IsClose(DllStructGetData($tRectMoving, 'Right'), $iLeftNonMoving) Then DllStructSetData($tRectMoving, 'Right', $iLeftNonMoving)
+EndIf
+Case 3; top
+If ($iLeftMoving <= $iRightNonMoving + 5) And ($iRightMoving + 5 >= $iLeftNonMoving) Then
+If _IsClose(DllStructGetData($tRectMoving, 'Top'), $iBottomNonMoving) Then DllStructSetData($tRectMoving, 'Top', $iBottomNonMoving)
+If _IsClose(DllStructGetData($tRectMoving, 'Top'), $iTopNonMoving) Then DllStructSetData($tRectMoving, 'Top', $iTopNonMoving)
+EndIf
+Case 4; top left
+If ($iLeftMoving <= $iRightNonMoving + 5) And ($iRightMoving + 5 >= $iLeftNonMoving) Then
+If _IsClose(DllStructGetData($tRectMoving, 'Top'), $iBottomNonMoving) Then DllStructSetData($tRectMoving, 'Top', $iBottomNonMoving)
+If _IsClose(DllStructGetData($tRectMoving, 'Top'), $iTopNonMoving) Then DllStructSetData($tRectMoving, 'Top', $iTopNonMoving)
+If _IsClose(DllStructGetData($tRectMoving, 'Left'), $iLeftNonMoving) Then DllStructSetData($tRectMoving, 'Left', $iLeftNonMoving)
+If _IsClose(DllStructGetData($tRectMoving, 'Left'), $iRightNonMoving) Then DllStructSetData($tRectMoving, 'Left', $iRightNonMoving)
+If _IsClose($iLeftMoving, 0) Then DllStructSetData($tRectMoving, 'Left', 0)
+EndIf
+Case 5; top right
+If ($iLeftMoving <= $iRightNonMoving + 5) And ($iRightMoving + 5 >= $iLeftNonMoving) Then
+If _IsClose(DllStructGetData($tRectMoving, 'Top'), $iBottomNonMoving) Then DllStructSetData($tRectMoving, 'Top', $iBottomNonMoving)
+If _IsClose(DllStructGetData($tRectMoving, 'Top'), $iTopNonMoving) Then DllStructSetData($tRectMoving, 'Top', $iTopNonMoving)
+If _IsClose(DllStructGetData($tRectMoving, 'Right'), $iRightNonMoving) Then DllStructSetData($tRectMoving, 'Right', $iRightNonMoving)
+If _IsClose(DllStructGetData($tRectMoving, 'Right'), $iLeftNonMoving) Then DllStructSetData($tRectMoving, 'Right', $iLeftNonMoving)
+EndIf
+EndSwitch
+Next
+#endregion Check if resizing near other windows
+ 
+Return $GUI_RUNDEFMSG
+ 
+EndFunc   ;==>WS_WM_SIZING
+ 
+; #FUNCTION# ====================================================================================================
+; Name...........: _IsClose
+; Description....: Tests if Position a is near Postion b
+; Syntax.........: _IsClose($a, $b)
+; Parameters.....: $a - Position 1
+; $b - Position 2
+; Return values..: True/False
+; Author.........: Beege
+; ===============================================================================================================
+Func _IsClose($a, $b)
+Return (Abs($a - $b) < 15)
+EndFunc   ;==>_IsClose
+#endregion internel functions
+ 
+Func _IsVisible($handle)
+Return (BitAND(WinGetState($handle), 2) = 2)
+EndFunc   ;==>_IsVisible
