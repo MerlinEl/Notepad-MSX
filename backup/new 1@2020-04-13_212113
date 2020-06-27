@@ -1,0 +1,33 @@
+          //Loading in  myXmlDocument the xml  from the url 
+            string m_strFilePath = "http://www.XXX.com/XX/XX/getAllPackages";
+            XmlDocument myXmlDocument = new XmlDocument();           
+            //myXmlDocument.Save(Console.Out); 
+            myXmlDocument.Load(m_strFilePath);
+
+
+
+var query = (from bl in XElement.Load(@"C:\xx\doc1.xml").Elements("line_item_data").GroupBy(i1 =>
+                            i1.Element("line_item").Value).Select(i1 => i1.First())
+
+                         join g in XElement.Load(new XmlNodeReader(myXmlDocument)).Elements("productVersionDetails").GroupBy(i1 =>
+                            i1.Element("product").Value).Select(i1 => i1.First())
+                     on (string)bl.Element("line_item").Value equals (string)g.Element("product").Value
+              where ((string)g.Element("type")).Equals("MSD")
+
+              select new XElement("product_item",
+
+                   new XElement("version_id", (string)g.Element("version_id")),
+                   new XElement("technology_process",(string)bl.Element("technology_process")),
+                   new XElement("product", (string)g.Element("product")),
+                   new XElement("version", (string)g.Element("version")),
+                   new XElement("status", (string)g.Element("status")),
+                   new XElement("owner_name", (string)bl.Element("owner_name")),
+                   new XElement("description", (string)g.Element("description")),
+                   new XElement("os", (string)g.Element("os"))
+
+             )).ToList();
+
+            //Save the new full List in the path data source File
+         var doc = new XElement("ArrayOfProductVersionDetails", query);
+         doc.Save(@"C:\xxx\xx\XML_Merged.xml");
+         Console.WriteLine("XML merged and file saved.");

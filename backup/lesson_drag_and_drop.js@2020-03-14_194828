@@ -1,0 +1,165 @@
+var initLesson = function(root, lib) {
+
+	//all interactive components is in AI layer
+	var pieces = root.getAiItem("pieces"); //pick AI layer from mc(pieces)
+	var slots = root.getAiItem("slots"); //pick AI layer from mc(slots)
+	var restart = root.restart;
+	var winMessage = root.winMessage;
+	var positions = [];
+	function getFileName() {
+	
+		var url = window.location.pathname;
+		return url.substring(url.lastIndexOf('/')+1); //filename
+	};
+	function addComponents() {
+		
+		var comp=AdobeAn.getComposition("739E128487FA2541A84E9BB53F909860");
+		var lib=comp.getLibrary();
+		var loader = new createjs.LoadQueue(false);
+		loader.addEventListener("fileload", function(evt){handleFileLoad(evt,comp)});
+		loader.addEventListener("complete", function(evt){handleComplete(evt,comp)});
+		var lib=comp.getLibrary();
+		loader.loadManifest(lib.properties.manifest);
+		function handleFileLoad(evt, comp) {
+			
+			var images=comp.getImages();	
+			if (evt && (evt.item.type == "image")) { images[evt.item.id] = evt.result; }	
+		};
+		function handleComplete(evt,comp) {
+			//This function is always called, irrespective of the content. You can use the variable "stage" after it is created in token create_stage.
+			var lib=comp.getLibrary();
+			var ss=comp.getSpriteSheet();
+			var queue = evt.target;
+			var ssMetadata = lib.ssMetadata;
+			for(i=0; i<ssMetadata.length; i++) {
+				ss[ssMetadata[i].name] = new createjs.SpriteSheet( {"images": [queue.getResult(ssMetadata[i].name)], "frames": ssMetadata[i].frames} )
+			}	
+			exportRoot = new lib.mov_rect_01();
+			stage.addChild(exportRoot);			
+		};
+		//var lib = AdobeAn.getComposition("739E128487FA2541A84E9BB53F909860").getLibrary();
+		//stage.addChild(new lib.mov_rect_01());
+		//createjs.Ticker.setFPS(lib.properties.fps);
+		//createjs.Ticker.addEventListener("tick", stage);
+	};
+	root.setup = function(){
+	
+		document.body.style.backgroundColor = lib.properties.color; //set bakground color
+		createjs.Touch.enable(stage);
+		stage.mouseMoveOutside = true;
+		root.drawStart = stage.on("drawstart", root.start, null, true);
+	};
+	root.start = function(e){
+		//console.log("root:", root);
+		stage.off("drawstart", root.drawStart);
+		winMessage.originalY = winMessage.y;	
+		addComponents(); //load external interactive components
+		//console.log("start > winMessage:", winMessage);
+		//console.log("start > pieces.children:", pieces.children);
+		//setup pieces
+		pieces.children.forEach(function(child, index){
+			
+			positions[index] = {x:child.x, y:child.y};
+		});
+		//setup slots
+		slots.children.forEach(function(child, index) {
+			
+			child.mouseChildren = false;
+		});
+		root.restartHandler(null);	
+		restart.on("click", root.restartHandler);
+		pieces.on("mousedown", root.mouseDownHandler);	
+		
+		console.log("initLesson > start:", getFileName());
+	};
+	root.restartHandler = function(e){
+		
+		pieces.count = 0;
+		winMessage.text = "";
+		root.shuffle();
+	};
+	root.mouseDownHandler = function(e){
+		
+		e.currentTarget.setChildIndex(e.target, e.currentTarget.children.length - 1); //move selected piece on Z - top
+		e.target.offsetX = (e.stageX / stage.scaleX) - e.target.x; //move piece to mouse X
+		e.target.offsetY = (e.stageY / stage.scaleY) - e.target.y; //move piece to mouse Y
+		pieces.target = e.target;
+		root.stageMouseMove = stage.on("stagemousemove", root.stageMouseMoveHandler);
+		root.stageMouseUp = stage.on("stagemouseup", root.stageMouseUpHandler);
+	};
+	root.stageMouseMoveHandler = function(e){
+		
+		if (pieces.target){
+			
+			pieces.target.x = (e.stageX / stage.scaleX) - pieces.target.offsetX;
+			pieces.target.y = (e.stageY / stage.scaleY) - pieces.target.offsetY;
+		}	
+	};
+	root.stageMouseUpHandler = function(e){
+		
+		stage.off("stagemousemove", root.stageMouseMove);
+		stage.off("stagemouseup", root.stageMouseUp);
+		if (pieces.target){
+			
+			root.check();
+			pieces.target = null;
+		}	
+	};
+	root.shuffle = function(){
+		
+		positions.sort(function(a, b){
+			
+			return 0.5 - Math.random();
+		});
+		
+		pieces.children.forEach(function(child, index) {
+			
+			child.originalX = positions[index].x;
+			child.originalY = positions[index].y;		
+			child.mouseEnabled = true;		
+			createjs.Tween.get(child).to({x:child.originalX, y:child.originalY}, 350, createjs.Ease.backInOut);
+		});
+	};
+	root.check = function(){
+		
+		var spot = slots.getObjectUnderPoint(pieces.target.x, pieces.target.y);
+		//console.log("check > spot:", spot);
+		if (!spot){
+			
+			root.onMiss();
+			return;
+		}
+		root.slot = spot.parent.parent; //spot[layer].parent
+		if (root.slot){
+			
+			if (pieces.target.name === root.slot.name){
+				
+				root.onMatch();
+				if (pieces.count === pieces.children.length)
+				root.onWin();
+				
+			} else root.onMiss();
+			root.slot = null;
+			
+		} else root.onMiss();
+	};
+	root.onMatch = function(){
+		
+		pieces.target.mouseEnabled = false;
+		pieces.count++;
+		createjs.Tween.get(pieces.target).to({x:root.slot.x, y:root.slot.y}, 350, createjs.Ease.backInOut);
+	};
+	root.onWin = function(){
+		
+		winMessage.text = "YOU WIN!";
+		winMessage.alpha = 0;
+		winMessage.y = winMessage.originalY + 60;
+		createjs.Tween.get(winMessage).to({alpha:1, y:winMessage.originalY}, 500, createjs.Ease.backInOut);
+	};
+	root.onMiss = function(){
+		
+		//console.log("onMiss > pieces.target:", pieces.target, "home pos:", {x:pieces.target.originalX, y:pieces.target.originalY});
+		createjs.Tween.get(pieces.target).to({x:pieces.target.originalX, y:pieces.target.originalY}, 350, createjs.Ease.backInOut);
+	};
+	root.setup();
+}

@@ -1,0 +1,20 @@
+---------------------------
+Error Loading Plug-in DLL
+---------------------------
+DLL <C:\Program Files\Autodesk\3ds Max 2018\stdplugs\SplineAlign.dll> doesn't implement the following functions:
+LibVersion
+LibDescription
+LibNumberClasses
+LibClassDesc
+---------------------------
+OK   
+---------------------------
+
+
+---------------------------
+Error Loading Plug-in DLL
+---------------------------
+DLL <C:\Program Files\Autodesk\3ds Max 2018\stdplugs\SplineAlign.dll> is not made for this version of the program - not loading
+---------------------------
+OK   
+---------------------------
